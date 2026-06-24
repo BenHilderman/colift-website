@@ -49,7 +49,7 @@ img{display:block;max-width:100%}
 .nav.scrolled{background:rgba(0,0,0,0.72);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .brand{display:flex;align-items:center;gap:10px}
-.brand img{width:30px;height:30px;border-radius:8px}
+.brand img.logo{height:28px;width:auto;display:block}
 .brand .name{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:0.05em;text-transform:uppercase;line-height:1}
 .nav-right{display:flex;align-items:center;gap:18px}
 .nav-link{font-weight:600;font-size:14px;color:var(--muted)}
@@ -75,11 +75,11 @@ img{display:block;max-width:100%}
 .form-done b{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
 /* hero phone — bare, straight-on, soft shadow (BeReal/Cal AI) */
-.hero-shot{margin:54px auto 0;width:min(300px,72vw);position:relative}
+.hero-shot{margin:46px auto 0;width:min(270px,66vw);position:relative}
 .hero-shot img{width:100%;border-radius:38px;box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.06)}
 
 /* ---------- section scaffolding ---------- */
-section{padding:92px 0;position:relative}
+section{padding:66px 0;position:relative}
 .eyebrow{font-family:var(--body);font-weight:800;font-size:12.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
 .sec-h{font-family:var(--disp);font-weight:900;letter-spacing:-0.015em;line-height:0.98;font-size:clamp(34px,5.5vw,62px)}
 .sec-sub{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:46ch;margin-top:14px;font-weight:500}
@@ -93,18 +93,16 @@ section{padding:92px 0;position:relative}
 
 /* alternating feature rows */
 .feature{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:30px}
-.feature+.feature{margin-top:120px}
+.feature+.feature{margin-top:72px}
 .feature.flip .f-copy{order:2}
 .feature.flip .f-media{order:1}
 .f-copy h2{font-family:var(--disp);font-weight:900;letter-spacing:-0.015em;line-height:1;font-size:clamp(30px,4.4vw,50px)}
 .f-copy p{color:var(--muted);font-size:clamp(15px,1.8vw,17.5px);margin-top:16px;max-width:34ch;font-weight:500;line-height:1.55}
 .f-media{display:flex;justify-content:center}
-.f-media img{width:min(280px,70vw);border-radius:34px;box-shadow:0 24px 70px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.06)}
-.f-media.tilt img{transform:rotate(-3deg)}
-.f-media.framed img{border-radius:40px;padding:9px;background:#0c0c10;box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.09)}
+.f-media img{width:min(258px,66vw);border-radius:32px;box-shadow:0 22px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.06)}
 
 /* manifesto — full black, big type, no screenshot, grain */
-.manifesto{text-align:center;padding:120px 0}
+.manifesto{text-align:center;padding:86px 0}
 .manifesto::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:screen;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .manifesto p{font-family:var(--disp);font-weight:800;letter-spacing:-0.01em;line-height:1.06;
@@ -132,7 +130,7 @@ section{padding:92px 0;position:relative}
 .faq a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 
 /* footer CTA */
-.footer-cta{text-align:center;padding:120px 0 100px}
+.footer-cta{text-align:center;padding:84px 0 78px}
 .footer-cta h2{font-family:var(--disp);font-weight:900;line-height:0.92;letter-spacing:-0.02em;font-size:clamp(40px,8vw,92px)}
 .footer-cta .line2{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .footer-cta .cta-row{margin-top:34px}
@@ -210,7 +208,8 @@ footer.site .copy{color:var(--faint);font-size:12.5px;margin-top:30px}
   .quotes{grid-template-columns:1fr}
   .f-media.tilt img{transform:none}
   .mobile-bar{display:flex}
-  section{padding:72px 0}
+  section{padding:50px 0}
+  .feature+.feature{margin-top:54px}
   .hero{padding:120px 0 20px}
   body{padding-bottom:76px}
   .nav-right .nav-link{display:none}
