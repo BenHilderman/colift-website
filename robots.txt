@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://colift.app/sitemap.xml
+Sitemap: https://colift.fit/sitemap.xml
