@@ -49,7 +49,7 @@ document.querySelectorAll("[data-cta]").forEach((b) => {
 /* ---- subtle parallax on phone mockups (skipped if reduced-motion) ---- */
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (!reduceMotion) {
-  const px = Array.from(document.querySelectorAll(".f-media img, .hero-shot img"));
+  const px = Array.from(document.querySelectorAll(".f-media .app-frame"));
   let ticking = false;
   const update = () => {
     const vh = window.innerHeight;

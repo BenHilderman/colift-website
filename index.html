@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>CoLift — Never train alone</title>
-<meta name="description" content="The social fitness app where you train with a friend. Lift together live, or replay their exact workout on your own time. Presence over performance.">
+<meta name="description" content="Work out with a friend, live or on your own time. Every session becomes one shared post — with both your reactions on it. Like BeReal, for the gym.">
 <link rel="icon" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#08080B">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CoLift — Never train alone">
-<meta property="og:description" content="Train with a friend. Lift together live, or replay their workout on your own time.">
+<meta property="og:description" content="Work out with a friend, live or on your own time. Every session becomes one shared post — with both your reactions on it.">
 <meta property="og:image" content="assets/og.png">
 <meta property="og:url" content="https://colift.fit">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CoLift — Never train alone">
-<meta name="twitter:description" content="Train with a friend. Lift together live, or replay their workout on your own time.">
+<meta name="twitter:description" content="Work out with a friend. Every session becomes one shared post — with both your reactions on it.">
 <meta name="twitter:image" content="assets/og.png">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -37,111 +37,98 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="wrap">
-    <h1>Never train <span class="grad-text">alone.</span></h1>
-    <p class="sub">Train with a friend — lift together live, or replay their workout on your own time.</p>
-
-    <div class="cta-row" id="hero-cta">
-      <form class="waitlist" id="waitlist">
-        <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address">
-        <button class="btn" type="submit">Get early access</button>
-      </form>
-      <p class="micro">Free. No card. Be first in when CoLift opens.</p>
-      <div class="store-badges hidden" id="store-badges">
-        <a class="btn" id="appstore-link" href="#">Download on the App&nbsp;Store</a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Never train <span class="grad-text">alone.</span></h1>
+      <p class="sub">Train with a friend — lift together live, or replay their workout on your own time. Presence over performance.</p>
+      <div class="cta-row" id="hero-cta">
+        <form class="waitlist" id="waitlist">
+          <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address">
+          <button class="btn" type="submit">Get early access</button>
+        </form>
+        <p class="micro">Free. No card. Be first in when CoLift opens.</p>
+        <div class="store-badges hidden" id="store-badges">
+          <a class="btn" id="appstore-link" href="#">Download on the App&nbsp;Store</a>
+        </div>
       </div>
     </div>
 
     <div class="hero-shot reveal">
-      <img src="assets/screens/home.png" alt="The CoLift home feed — a friend lifting live, your friends, and a shared workout" loading="eager" width="402" height="874">
+      <div class="app-frame hero-phone">
+        <div class="app-screen">
+          <img src="assets/screens/home.png" alt="The CoLift home feed with a friend lifting live, friends, and a shared workout post" loading="eager" width="402" height="874">
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- HOW IT WORKS -->
+<!-- SHOWCASE 1 — in the workout -->
 <section id="how">
   <div class="wrap">
-    <p class="eyebrow reveal">How it works</p>
-    <h2 class="sec-h reveal">One workout. Two people.</h2>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.768 1.768a2 2 0 1 1-2.828-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.829 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg></div>
-        <h3>Start a lift</h3><p>Begin your workout and capture a moment mid-set.</p>
-      </div>
-      <div class="step reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></div>
-        <h3>Your friend gets the ping</h3><p>They see you showed up — and it's their turn.</p>
-      </div>
-      <div class="step reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></div>
-        <h3>Join live, or replay it</h3><p>Same workout, their own time. Presence, not a leaderboard.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURE 1 — Live -->
-<section>
-  <div class="wrap">
     <div class="feature">
       <div class="f-copy reveal">
-        <h2>Your friend's lifting. <span class="grad-text">Right now.</span></h2>
-        <p>See who's at the rack and drop into the same session — live. No scheduling, no plans. Just the feeling that someone's in it with you.</p>
+        <div class="tag-live"><span class="ld"></span> LIFTING NOW</div>
+        <h2>Your friend, <span class="grad-text">right there with you.</span></h2>
+        <p>Drop into their live session and lift side by side — even in different gyms. One tap sends a 🔥 or 💪 mid-set, so they feel you there for the last rep.</p>
       </div>
-      <div class="f-media reveal"><img src="assets/screens/lobby.png" alt="Warming up together, live" loading="lazy"></div>
+      <div class="f-media reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/session.png" alt="Lifting live with Tyler — mid-set, with one-tap reactions" loading="eager"></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- FEATURE 2 — Shared moments -->
+<!-- SHOWCASE 2 — the moment -->
 <section>
   <div class="wrap">
     <div class="feature flip">
       <div class="f-copy reveal">
-        <h2>Real moments. <span class="grad-text">No highlight reel.</span></h2>
-        <p>Snap a photo or clip mid-set — front and back, like you're really there. Your friend sees the unfiltered moment, reacts, and leaves one back. The grind, shared as it happens.</p>
+        <p class="eyebrow">Capture it</p>
+        <h2>Front and back. <span class="grad-text">The real moment.</span></h2>
+        <p>Snap a photo mid-set — your face and the lift at once, like BeReal. No highlight reel, no flexing for the camera. Just the two of you actually showing up.</p>
       </div>
-      <div class="f-media reveal"><img src="assets/screens/moments.png" alt="Shared workout moments captured mid-set" loading="lazy"></div>
+      <div class="f-media reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/momentview.png" alt="A CoLift moment — front-and-back photo captured mid-set" loading="eager"></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- FEATURE 3 — Replay (the signature, tilted+framed) -->
-<section>
+<!-- SHOWCASE 3 — THE MVP: both your reactions -->
+<section class="mvp">
   <div class="wrap">
     <div class="feature">
       <div class="f-copy reveal">
-        <h2>Missed it live? <span class="grad-text">Replay it.</span></h2>
-        <p>Your friend lifted at 6am; you catch it at 7pm. Replay their exact workout — same exercises, same moments — on your own time. Different gyms, different hours, same session.</p>
+        <p class="eyebrow">The shared post</p>
+        <h2>One post. <span class="grad-text">Both of you on it.</span></h2>
+        <p>Each workout lands as a real CoLift post: the lift, the moment, the reactions, and the replay path back into the session. No rebuilt mockups here — this is the app screen.</p>
       </div>
-      <div class="f-media reveal"><img src="assets/screens/replay.png" alt="Replay a friend's workout together" loading="lazy"></div>
+      <div class="f-media reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/postdetail.png" alt="A real CoLift post detail screen with shared workout reactions" loading="eager"></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- FEATURE 3 — Accountability -->
+<!-- REPLAY -->
 <section>
   <div class="wrap">
     <div class="feature flip">
       <div class="f-copy reveal">
-        <h2>Harder to skip when <span class="grad-text">someone's counting on you.</span></h2>
-        <p>Every day you both show up builds your streak. Miss one and it's not a guilt-trip — it's a friend noticing. That's the whole point.</p>
+        <p class="eyebrow">Replay</p>
+        <h2>Missed it live? <span class="grad-text">Run it back.</span></h2>
+        <p>Your friend lifted earlier. You can replay the workout later with their moments and exercises still attached, so different schedules still become one shared lift.</p>
       </div>
-      <div class="f-media reveal"><img src="assets/screens/us.png" alt="You and a friend, days trained together" loading="lazy"></div>
+      <div class="f-media reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/replay.png" alt="The real CoLift replay screen" loading="eager"></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- COLIFT+ -->
+<!-- NO PRESSURE -->
 <section>
   <div class="wrap">
     <div class="feature">
       <div class="f-copy reveal">
-        <p class="eyebrow">CoLift+</p>
-        <h2>Go deeper <span class="grad-text">when you're ready.</span></h2>
-        <p>The presence loop is free forever. CoLift+ adds tracking for people who want it — analytics, streak history, food &amp; macro logging, weight trends and goals. 14-day free trial, no card.</p>
+        <p class="eyebrow">No pressure</p>
+        <h2>It counts that <span class="grad-text">you showed up.</span></h2>
+        <p>CoLift tracks the days you trained together — not who lifted more. No leaderboards, no PRs on blast, no comparing. Every day you both show up builds your streak. That's the whole point.</p>
       </div>
-      <div class="f-media reveal"><img src="assets/screens/dashboard.png" alt="CoLift+ training analytics" loading="lazy"></div>
+      <div class="f-media reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/us.png" alt="You and Tyler — 12 days trained together, a 7-day milestone" loading="eager"></div></div></div>
     </div>
   </div>
 </section>
@@ -159,10 +146,11 @@
   <div class="wrap">
     <h2 class="sec-h reveal" style="text-align:center;margin-bottom:34px">Questions</h2>
     <div class="faq reveal">
-      <details><summary>What is CoLift?</summary><p>A social fitness app where you train with a friend — like BeReal, but for the gym. You do your workout, they do theirs, and you show up for each other.</p></details>
-      <details><summary>Do we have to work out at the same time or place?</summary><p>No. Catch a friend's lift live, or <strong>replay</strong> their exact workout later — different gyms, different times. You train together without being in the same room.</p></details>
-      <details><summary>Is it free?</summary><p>Yes. The core — presence, invites, the feed, replays, streaks — is free forever. <strong>CoLift+</strong> is an optional upgrade (~$60/yr) that adds tracking, analytics, and food &amp; weight logging, with a free 14-day trial and no card to start.</p></details>
-      <details><summary>What does "presence over performance" mean?</summary><p>CoLift rewards showing up, not your weights or PRs. No leaderboards, no ranking. The win is the habit, together.</p></details>
+      <details><summary>What is CoLift?</summary><p>A social fitness app where you train with a friend — like BeReal, but for the gym. You do your workout, they do theirs, and every session becomes a shared post you both react to.</p></details>
+      <details><summary>What are "both your reactions"?</summary><p>When a workout posts, you each drop a <strong>reaction selfie</strong> — a real photo of you, not just an emoji (think BeReal's RealMoji). Both reactions sit on the post together, so it's a shared moment, not a like count.</p></details>
+      <details><summary>Do we have to work out at the same time or place?</summary><p>No. Catch a friend's lift live, or <strong>replay</strong> their exact workout later — different gyms, different times. The post shows both clocks, so 6am and 7pm still land as one session.</p></details>
+      <details><summary>Is there any competition or ranking?</summary><p>No. CoLift rewards showing up, not your weights or PRs. No leaderboards, no ranking — the win is the habit, together. We call it <strong>presence over performance</strong>.</p></details>
+      <details><summary>Is it free?</summary><p>Yes. The core — presence, invites, the feed, replays, reactions, streaks — is free forever. <strong>CoLift+</strong> is an optional upgrade (~$60/yr) that adds tracking, analytics, and food &amp; weight logging, with a free 14-day trial and no card to start.</p></details>
       <details><summary>Is my data private?</summary><p>You control who sees your workouts. We don't sell your data or run ads. See our <a href="privacy.html">Privacy Policy</a>.</p></details>
       <details><summary>How do I cancel CoLift+ or delete my account?</summary><p>Cancel CoLift+ anytime in iOS Settings. You can delete your account right in the app — here's <a href="delete-account.html">how</a>.</p></details>
     </div>
