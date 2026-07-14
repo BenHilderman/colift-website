@@ -9,8 +9,9 @@
 @font-face{font-family:'Barlow Condensed';src:url('assets/fonts/BarlowCondensed-900.woff2') format('woff2');font-weight:900;font-display:swap}
 
 :root{
+  /* Brand tokens copied verbatim from the app (CoLiftJourney_v2_1.jsx :root + token block) */
   --ring:#08080B;
-  --app-bg:radial-gradient(82% 44% at 50% 3%,rgba(168,0,255,0.24),transparent 60%),radial-gradient(90% 60% at 50% 56%,rgba(140,50,238,0.19),transparent 74%),radial-gradient(88% 48% at 50% 100%,rgba(255,0,220,0.14),transparent 64%),linear-gradient(180deg,#130A1E 0%,#0C0813 48%,#08070B 100%);
+  --app-bg:radial-gradient(68% 40% at 50% 0%,rgba(158,26,240,0.20),transparent 58%),radial-gradient(55% 46% at 4% 2%,rgba(64,74,255,0.11),transparent 60%),radial-gradient(58% 48% at 100% 24%,rgba(230,30,180,0.10),transparent 62%),radial-gradient(85% 42% at 50% 100%,rgba(150,40,238,0.075),transparent 60%),linear-gradient(180deg,#0C0714 0%,#080610 50%,#050409 100%);
   --surface:rgba(20,12,24,0.96);
   --tabbar:rgba(10,10,14,0.94);
   --fg:#fff;
@@ -22,13 +23,13 @@
   --card-2:rgba(255,255,255,0.06);
   --card-line:rgba(255,255,255,0.20);
   --card-shadow:0 1px 2px rgba(0,0,0,0.4),0 8px 24px rgba(0,0,0,0.22),inset 0 0.5px 0 rgba(255,255,255,0.07);
-  /* brand */
+  /* brand — exact app values: gradV / gradPink / liveGreen */
   --magenta:#FF00DD;
   --brand-mid:#CC00FF;
   --purple:#7700FF;
   --live:#3ED67A;
   --grad:linear-gradient(135deg,#FF00DD,#CC00FF 52%,#7700FF);
-  --grad-text:linear-gradient(180deg,#BB00FF,#FF00DD);
+  --grad-text:linear-gradient(180deg,#BB00FF 0%,#FF00DD 75%);
   --glow:0 6px 18px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.18);
   --glow-lg:0 1px 2px rgba(0,0,0,0.4),0 8px 24px rgba(0,0,0,0.22);
   --disp:'Barlow Condensed',system-ui,sans-serif;
@@ -40,7 +41,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   color:var(--fg);font-family:var(--body);font-weight:400;line-height:1.5;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  background:var(--ring);
+  background:#070709; /* app outer html/body base */
 }
 body::before{
   content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
@@ -102,7 +103,7 @@ img{display:block;max-width:100%}
 .app-screen img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
 .app-frame.hero-phone{margin:54px auto 0}
 .app-frame::after{content:"";position:absolute;left:50%;top:10%;transform:translateX(-50%);width:138%;height:74%;z-index:-1;border-radius:50%;filter:blur(58px);
-  background:radial-gradient(circle,rgba(168,0,255,0.34),rgba(255,0,221,0.10) 48%,transparent 72%)}
+  background:radial-gradient(circle,rgba(150,40,238,0.34),rgba(255,0,221,0.10) 48%,transparent 72%)}
 @keyframes pulseLive{0%,100%{box-shadow:0 0 0 3px rgba(62,214,122,0.28)}50%{box-shadow:0 0 0 7px rgba(62,214,122,0.05)}}
 
 /* ---------- section scaffolding ---------- */
@@ -145,7 +146,7 @@ section{padding:74px 0;position:relative}
 .f-media{display:flex;justify-content:center;position:relative}
 .f-media::before{content:"";position:absolute;width:78%;height:70%;left:50%;top:52%;transform:translate(-50%,-50%);
   z-index:-1;border-radius:50%;filter:blur(64px);opacity:.9;
-  background:radial-gradient(circle,rgba(168,0,255,0.32),rgba(255,0,221,0.10) 52%,transparent 72%)}
+  background:radial-gradient(circle,rgba(150,40,238,0.32),rgba(255,0,221,0.10) 52%,transparent 72%)}
 .f-media .app-frame{width:min(272px,70vw);height:auto;aspect-ratio:318/648;padding:8px;border-radius:43px}
 .f-media .app-screen{border-radius:35px}
 .f-media .app-screen img{border:0}
