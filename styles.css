@@ -29,7 +29,7 @@
   --purple:#7700FF;
   --live:#3ED67A;
   --grad:linear-gradient(135deg,#FF00DD,#CC00FF 52%,#7700FF);
-  --grad-text:linear-gradient(180deg,#BB00FF 0%,#FF00DD 75%);
+  --grad-text:linear-gradient(180deg,#7700FF 0%,#CC00FF 48%,#FF00DD 92%); /* = app LOGO_GRAD (matches the wordmark) */
   --glow:0 6px 18px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.18);
   --glow-lg:0 1px 2px rgba(0,0,0,0.4),0 8px 24px rgba(0,0,0,0.22);
   --disp:'Barlow Condensed',system-ui,sans-serif;
@@ -77,8 +77,8 @@ img{display:block;max-width:100%}
 .hero{padding:132px 0 56px;position:relative}
 .hero-grid{display:grid;grid-template-columns:1.02fr 0.98fr;gap:44px;align-items:center;min-height:min(74vh,660px)}
 .hero-copy{text-align:left}
-.hero h1{font-family:var(--disp);font-weight:900;letter-spacing:-0.02em;line-height:0.88;
-  font-size:clamp(54px,7.6vw,104px);margin:0;max-width:11ch}
+.hero h1{font-family:var(--disp);font-weight:900;line-height:0.98;
+  font-size:clamp(52px,7.4vw,98px);margin:0;max-width:12ch;letter-spacing:-0.01em}
 .hero .sub{margin:22px 0 0;max-width:42ch;color:var(--muted);font-size:clamp(16px,2.3vw,20px);font-weight:500;line-height:1.5}
 .hero .sub strong{color:#fff;font-weight:700}
 .cta-row{margin-top:30px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
