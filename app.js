@@ -1,7 +1,9 @@
 /* ===== CoLift site — config + tiny interactions (no dependencies) ===== */
 
 /* ---- CONFIG: fill these in ---- */
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY"; // get one free at web3forms.com
+// Waitlist backend: a Supabase Edge Function that stores the signup and emails a
+// confirmation FROM colift.app.official@gmail.com. See supabase/functions/waitlist-signup.
+const WAITLIST_ENDPOINT = "https://kcfceolxwmacgmmrjsva.supabase.co/functions/v1/waitlist-signup";
 const APP_STORE_LIVE = false;            // flip to true once the app is on the App Store
 const APP_STORE_URL  = "https://apps.apple.com/app/idXXXXXXXXX";
 const INSTAGRAM_URL  = "https://instagram.com/colift.app";
@@ -69,7 +71,7 @@ if (!reduceMotion) {
   update();
 }
 
-/* ---- waitlist submit -> Web3Forms (no reload) ---- */
+/* ---- waitlist submit -> Supabase Edge Function (no reload) ---- */
 const wl = document.getElementById("waitlist");
 if (wl) {
   wl.addEventListener("submit", async (e) => {
@@ -78,28 +80,37 @@ if (wl) {
     const btn = wl.querySelector("button");
     const email = (input.value || "").trim();
     if (!email) return;
+    const refEl = wl.querySelector('[name="ref"]');
+    const ref = (refEl && refEl.value) || "";
+    const btnText = btn.textContent;
     btn.disabled = true; btn.textContent = "Joining…";
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch(WAITLIST_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "New CoLift waitlist signup",
-          from_name: "CoLift waitlist",
-          email: email,
-        }),
+        body: JSON.stringify({ email, ...(ref ? { ref } : {}) }),
       });
       const data = await res.json().catch(() => ({}));
-      const ok = res.ok && (data.success !== false);
+      const ok = res.ok && data.ok === true;
+      if (!ok) {
+        // Validation error (e.g. malformed email) — keep the form so they can fix it.
+        btn.disabled = false; btn.textContent = btnText;
+        const msg = res.status === 422
+          ? "That email doesn't look right — mind checking it?"
+          : "Hmm, that didn't go through. Email colift.app.official@gmail.com and we'll add you.";
+        input.setCustomValidity ? input.setCustomValidity(msg) : alert(msg);
+        input.reportValidity && input.reportValidity();
+        input.addEventListener("input", () => input.setCustomValidity && input.setCustomValidity(""), { once: true });
+        return;
+      }
       const done = document.createElement("p");
       done.className = "form-done";
-      done.innerHTML = ok
-        ? "You're on the list 🎟️ — <b>we'll email you when CoLift opens.</b>"
-        : "Hmm, that didn't go through. Email <b>colift.app.official@gmail.com</b> and we'll add you.";
+      done.innerHTML = data.already
+        ? "You're already on the list 🎟️ — <b>we'll email you the moment CoLift opens.</b>"
+        : "You're in 🎟️ — <b>check your inbox for a confirmation, and we'll email you when CoLift opens.</b>";
       wl.replaceWith(done);
     } catch (err) {
-      btn.disabled = false; btn.textContent = "Join the waitlist";
+      btn.disabled = false; btn.textContent = btnText;
       alert("Network error — please try again, or email colift.app.official@gmail.com");
     }
   });

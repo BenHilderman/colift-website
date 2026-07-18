@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>You're invited to CoLift — Never train alone</title>
+<meta name="description" content="A friend wants to lift with you on CoLift. Same workout, different schedules. Like BeReal, for the gym.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/icon.png">
+<link rel="apple-touch-icon" href="../assets/icon.png">
+<meta name="theme-color" content="#08080B">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Your friend invited you to CoLift">
+<meta property="og:description" content="Lift together — same workout, different schedules. Tap to join.">
+<meta property="og:image" content="../assets/og.png">
+<meta property="og:url" content="https://colift.fit/i">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your friend invited you to CoLift">
+<meta name="twitter:description" content="Lift together — same workout, different schedules. Tap to join.">
+<meta name="twitter:image" content="../assets/og.png">
+<link rel="stylesheet" href="../styles.css?v=3">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="COLIFT home">
+      <img class="logo" src="../assets/logo.png" alt="COLIFT">
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="/#how">How it works</a>
+      <a class="nav-link" href="/#faq">FAQ</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="invite-pill" id="invite-pill">
+        <span class="dot"></span> <b id="invite-who">A friend</b>&nbsp;invited you to lift together
+      </div>
+      <h1>Never train <span class="grad-text">alone.</span></h1>
+      <p class="sub">You just got pulled into someone's corner. Do the <strong>same workout</strong> — live together or on your own time — and every session becomes one shared post.</p>
+      <div class="cta-row" id="hero-cta">
+        <form class="waitlist" id="waitlist">
+          <input type="hidden" name="ref" id="ref-field" value="">
+          <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address">
+          <button class="btn" type="submit">Save my spot</button>
+        </form>
+        <p class="micro">Free. No card. We'll text your friend that you're in.</p>
+        <div class="store-badges hidden" id="store-badges">
+          <a class="btn" id="appstore-link" href="#">Download on the App&nbsp;Store</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-shot reveal">
+      <div class="app-frame hero-phone">
+        <div class="app-screen">
+          <img src="../assets/screens/home.png" alt="The CoLift home feed — a friend lifting live and a shared workout post" loading="eager" width="402" height="874">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WHY (mini) -->
+<section style="padding:8px 0 72px">
+  <div class="wrap" style="max-width:620px;text-align:center">
+    <p class="sub" style="margin:0 auto;max-width:52ch;color:var(--muted)">No leaderboards. No fake friends. Just you and the people who keep you showing up — <span class="grad-text" style="font-weight:800">presence over performance.</span></p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap cols">
+    <div>
+      <a class="brand" href="/"><img class="logo" src="../assets/logo.png" alt="COLIFT" style="height:22px"></a>
+      <p class="copy">© 2026 CoLift. Never train alone.</p>
+    </div>
+    <div>
+      <div class="col-h">Legal</div>
+      <div class="legal">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Use</a>
+        <a href="/support.html">Support</a>
+      </div>
+    </div>
+    <div>
+      <div class="col-h">Contact</div>
+      <div class="legal">
+        <a href="mailto:colift.app.official@gmail.com">colift.app.official@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .invite-pill{display:inline-flex;align-items:center;gap:2px;margin-bottom:20px;padding:9px 15px;border-radius:999px;
+    background:rgba(255,255,255,0.055);border:0.5px solid rgba(255,255,255,0.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);font-size:13.5px;font-weight:600;color:var(--muted);letter-spacing:.01em}
+  .invite-pill b{color:#fff;font-weight:800}
+  .invite-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--grad);margin-right:7px;
+    box-shadow:0 0 10px rgba(204,0,255,0.7);animation:pillpulse 2.2s ease-in-out infinite}
+  @keyframes pillpulse{0%,100%{opacity:1}50%{opacity:.45}}
+  @media (max-width:760px){ .invite-pill{margin-bottom:14px} }
+</style>
+
+<script src="../app.js"></script>
+<script>
+/* ---- invite context: read ?ref=, personalize, and carry it into the waitlist submit ---- */
+(function () {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var ref = (params.get("ref") || "").trim();
+    if (ref) {
+      try { localStorage.setItem("cl_ref", ref); } catch (e) {}
+    } else {
+      try { ref = localStorage.getItem("cl_ref") || ""; } catch (e) {}
+    }
+    var field = document.getElementById("ref-field");
+    if (field) field.value = ref;
+    /* If the ref looks like a readable name/handle (not a long UUID), show it. */
+    var who = document.getElementById("invite-who");
+    if (who && ref && ref.length <= 20 && !/[0-9a-f]{8}-[0-9a-f]{4}/i.test(ref)) {
+      var nm = ref.charAt(0).toUpperCase() + ref.slice(1);
+      who.textContent = nm;
+    }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
