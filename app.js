@@ -1,4 +1,4 @@
-/* ===== CoLift site — config + tiny interactions (no dependencies) ===== */
+/* ===== CoLift site: config + tiny interactions (no dependencies) ===== */
 
 /* ---- CONFIG: fill these in ---- */
 // Waitlist backend: a Supabase Edge Function that stores the signup and emails a
@@ -93,10 +93,10 @@ if (wl) {
       const data = await res.json().catch(() => ({}));
       const ok = res.ok && data.ok === true;
       if (!ok) {
-        // Validation error (e.g. malformed email) — keep the form so they can fix it.
+        // Validation error (e.g. malformed email), keep the form so they can fix it.
         btn.disabled = false; btn.textContent = btnText;
         const msg = res.status === 422
-          ? "That email doesn't look right — mind checking it?"
+          ? "That email doesn't look right. Mind checking it?"
           : "Hmm, that didn't go through. Email colift.app.official@gmail.com and we'll add you.";
         input.setCustomValidity ? input.setCustomValidity(msg) : alert(msg);
         input.reportValidity && input.reportValidity();
@@ -106,12 +106,12 @@ if (wl) {
       const done = document.createElement("p");
       done.className = "form-done";
       done.innerHTML = data.already
-        ? "You're already on the list 🎟️ — <b>we'll email you the moment CoLift opens.</b>"
-        : "You're in 🎟️ — <b>check your inbox for a confirmation, and we'll email you when CoLift opens.</b>";
+        ? "You're already on the list 🎟️. <b>We'll email you the moment CoLift opens.</b>"
+        : "You're in 🎟️. <b>Check your inbox for a confirmation, and we'll email you when CoLift opens.</b>";
       wl.replaceWith(done);
     } catch (err) {
       btn.disabled = false; btn.textContent = btnText;
-      alert("Network error — please try again, or email colift.app.official@gmail.com");
+      alert("Network error. Please try again, or email colift.app.official@gmail.com");
     }
   });
 }
