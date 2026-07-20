@@ -128,6 +128,34 @@
       var nm = ref.charAt(0).toUpperCase() + ref.slice(1);
       who.textContent = nm;
     }
+
+    /* ---- replay deep link: ?r=<b64url {w,t,h,x}> -> this page IS that workout's landing ---- */
+    var r = (params.get("r") || "").trim();
+    if (r) {
+      try {
+        var pl = JSON.parse(decodeURIComponent(escape(atob(r.replace(/-/g, "+").replace(/_/g, "/")))));
+        var w = (pl.w || "A friend"), t = (pl.t || "a workout"), xs = (pl.x || []);
+        var wCap = w.charAt(0).toUpperCase() + w.slice(1);
+        /* pill: "{w} sent you {t} · run it back" */
+        var pill = document.getElementById("invite-pill");
+        if (pill) pill.innerHTML = '<span class="dot"></span> <b>' + wCap + "</b>&nbsp;sent you " + t + " · run it back together";
+        /* headline: the workout is the invite */
+        var h1 = document.querySelector(".hero-copy h1");
+        if (h1) h1.innerHTML = wCap + "’s <span class=\"grad-text\">" + t + "</span> is waiting.";
+        var sub = document.querySelector(".hero-copy .sub");
+        if (sub && xs.length) sub.innerHTML = "<strong>" + xs.slice(0, 4).join(" · ") + (xs.length > 4 ? " · +" + (xs.length - 4) + " more" : "") + "</strong><br>Do the same workout on your own time, and it becomes one shared post with " + wCap + ".";
+        /* if the app is installed, hand straight off to it */
+        var cta = document.getElementById("hero-cta");
+        if (cta) {
+          var open = document.createElement("a");
+          open.className = "btn";
+          open.style.cssText = "display:inline-flex;margin-bottom:10px";
+          open.href = "com.colift.app://r?d=" + r;
+          open.textContent = "Open in CoLift";
+          cta.insertBefore(open, cta.firstChild);
+        }
+      } catch (e) {}
+    }
   } catch (e) {}
 })();
 </script>
