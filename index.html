@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>CoLift: Never train alone</title>
-<meta name="description" content="Work out with a friend, live or on your own time. Every session becomes one shared post, with both your reactions on it. Like BeReal, for the gym.">
+<meta name="description" content="Work out with a friend, live or on your own time. Every session becomes one shared post, with both your reactions on it.">
 <link rel="icon" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <meta name="theme-color" content="#08080B">
@@ -30,7 +30,7 @@
     <div class="nav-right">
       <a class="nav-link" href="#how">How it works</a>
       <a class="nav-link" href="#faq">FAQ</a>
-      <button class="btn btn-sm" data-cta>Get early access</button>
+      <button class="btn btn-sm" data-cta>Join waitlist</button>
     </div>
   </div>
 </nav>
@@ -75,24 +75,28 @@
 
 <!-- ═══ APPLE-STYLE SHOWCASE — people + screenshots ARE the page ═══ -->
 <style>
-  .ap{padding:88px 0 26px;text-align:center}
+  .ap{padding:76px 0 30px;text-align:center;position:relative}
+  .ap .wrap{position:relative}
+  .ap .wrap::before{content:"";position:absolute;left:50%;top:52%;width:min(560px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(160,45,255,0.14),transparent 62%);filter:blur(30px);pointer-events:none;z-index:-1}
   .ap .wrap{max-width:560px}
   .ap .eyebrow{font-size:13px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;background:linear-gradient(90deg,#FF00DD,#CC00FF);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
   .ap h2{font-family:var(--display,inherit);font-size:clamp(34px,8.6vw,58px);font-weight:800;line-height:1.04;letter-spacing:-0.02em;color:#fff;margin:0 0 12px}
   .ap p.apsub{font-size:16.5px;line-height:1.5;color:var(--muted,#9a93a8);max-width:34ch;margin:0 auto 34px}
   /* the lens: a zoomed crop of a REAL screenshot */
   .lens{position:relative;overflow:hidden;border-radius:34px;aspect-ratio:1/1.24;max-width:430px;margin:0 auto;
-    border:0.5px solid rgba(255,255,255,0.14);box-shadow:0 30px 80px rgba(0,0,0,0.55),0 0 60px rgba(170,40,255,0.10),inset 0 1px 0 rgba(255,255,255,0.08)}
+    border:0.5px solid rgba(255,255,255,0.16);box-shadow:0 34px 90px rgba(0,0,0,0.6),0 0 90px rgba(180,50,255,0.16),inset 0 1px 0 rgba(255,255,255,0.10)}
   .lens img{position:absolute;top:0;left:50%;width:172%;max-width:none;transform:translateX(-50%) translateY(var(--ty,0%))}
   .lens.wide{aspect-ratio:2/1.0}
   .lens.wide img{width:118%}
   .ap .phone-solo{max-width:288px;margin:0 auto}
+  .legal a,.nav-link{display:inline-block;padding:8px 2px}
 </style>
 
 <section class="ap">
   <div class="wrap">
     <p class="eyebrow reveal">Live presence</p>
-    <h2 class="reveal">They&rsquo;re right<br>there with you.</h2>
+    <h2 class="reveal">They&rsquo;re right<br><span class="grad-text">there with you.</span></h2>
     <p class="apsub reveal">Mid-set, your friend&rsquo;s face is the screen. One tap sends a 🔥 they feel instantly.</p>
     <div class="lens reveal" style="--ty:-16.5%"><img src="assets/screens/session.png?v=8" alt="Riley live in your workout: Your move now, one-tap Cheer" loading="lazy"></div>
   </div>
@@ -101,7 +105,7 @@
 <section class="ap">
   <div class="wrap">
     <p class="eyebrow reveal">The shared post</p>
-    <h2 class="reveal">One post.<br>Both of you on it.</h2>
+    <h2 class="reveal">One post.<br><span class="grad-text">Both of you on it.</span></h2>
     <p class="apsub reveal">Every workout lands as one post you both live on: the lift, the moment, the reactions.</p>
     <div class="app-frame phone-solo reveal"><div class="app-screen"><img src="assets/screens/postdetail.png?v=8" alt="A real CoLift post: the moment, the duo, the reactions" loading="lazy"></div></div>
   </div>
@@ -110,7 +114,7 @@
 <section class="ap" style="padding-bottom:96px">
   <div class="wrap">
     <p class="eyebrow reveal">Replay</p>
-    <h2 class="reveal">Friends run<br>it back.</h2>
+    <h2 class="reveal">Friends run<br><span class="grad-text">it back.</span></h2>
     <p class="apsub reveal">Miss it live? Their workout waits for you, and every replay shows up on the post.</p>
     <div class="lens wide reveal" style="--ty:-60%"><img src="assets/screens/postdetail.png?v=8" alt="Replay with Jordan: Casey, Jordan and 36 others, 19 replayed" loading="lazy"></div>
   </div>
@@ -121,8 +125,8 @@
   <div class="wrap">
     <h2 class="sec-h reveal" style="text-align:center;margin-bottom:34px">Questions</h2>
     <div class="faq reveal">
-      <details><summary>What is CoLift?</summary><p>A social fitness app where you train with a friend, like BeReal, but for the gym. You do your workout, they do theirs, and every session becomes a shared post you both react to.</p></details>
-      <details><summary>What are "both your reactions"?</summary><p>When a workout posts, you each drop a <strong>reaction selfie</strong>: a real photo of you, not just an emoji (think BeReal's RealMoji). Both reactions sit on the post together, so it's a shared moment, not a like count.</p></details>
+      <details><summary>What is CoLift?</summary><p>A social fitness app where you train with a friend. You do your workout, they do theirs, and every session becomes a shared post you both react to.</p></details>
+      <details><summary>What are "both your reactions"?</summary><p>When a workout posts, you each drop a <strong>reaction selfie</strong>: a real photo of you, not just an emoji. Both reactions sit on the post together, so it's a shared moment, not a like count.</p></details>
       <details><summary>Do we have to work out at the same time or place?</summary><p>No. Catch a friend's lift live, or <strong>replay</strong> their exact workout later, at different gyms and different times. The post shows both clocks, so 6am and 7pm still land as one session.</p></details>
       <details><summary>Is there any competition or ranking?</summary><p>No. CoLift rewards showing up, not your weights or PRs. No leaderboards, no ranking. The win is the habit, together. We call it <strong>presence over performance</strong>.</p></details>
       <details><summary>Is it free?</summary><p>Yes. The core (presence, invites, the feed, replays, reactions, streaks) is free forever. <strong>CoLift+</strong> is an optional upgrade (~$60/yr) that adds tracking, analytics, and food &amp; weight logging, with a free 14-day trial and no card to start.</p></details>
