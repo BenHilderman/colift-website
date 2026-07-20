@@ -83,12 +83,21 @@
   .ap .eyebrow{font-size:13px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;background:linear-gradient(90deg,#FF00DD,#CC00FF);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
   .ap h2{font-family:var(--display,inherit);font-size:clamp(34px,8.6vw,58px);font-weight:800;line-height:1.04;letter-spacing:-0.02em;color:#fff;margin:0 0 12px}
   .ap p.apsub{font-size:16.5px;line-height:1.5;color:var(--muted,#9a93a8);max-width:34ch;margin:0 auto 34px}
-  /* the lens: a zoomed crop of a REAL screenshot */
-  .lens{position:relative;overflow:hidden;border-radius:34px;aspect-ratio:1/1.24;max-width:430px;margin:0 auto;
-    border:0.5px solid rgba(255,255,255,0.16);box-shadow:0 34px 90px rgba(0,0,0,0.6),0 0 90px rgba(180,50,255,0.16),inset 0 1px 0 rgba(255,255,255,0.10)}
-  .lens img{position:absolute;top:0;left:50%;width:172%;max-width:none;transform:translateX(-50%) translateY(var(--ty,0%))}
-  .lens.wide{aspect-ratio:2/1.0}
-  .lens.wide img{width:118%}
+  /* brightness lift: the page glows, never a black hole */
+  body{background:#0D0A15}
+  body::before{background:
+    radial-gradient(70% 44% at 50% 0%,rgba(165,35,245,0.30),transparent 60%),
+    radial-gradient(56% 48% at 2% 4%,rgba(70,80,255,0.16),transparent 62%),
+    radial-gradient(60% 50% at 100% 26%,rgba(235,35,185,0.15),transparent 64%),
+    radial-gradient(88% 44% at 50% 100%,rgba(155,45,240,0.12),transparent 62%),
+    linear-gradient(180deg,#171126 0%,#0E0A1A 52%,#0A0714 100%)}
+  /* phone-fold crops: a REAL phone, cut at the section fold (bezel edges stay visible) */
+  .pz{position:relative;overflow:hidden;max-width:352px;margin:0 auto}
+  .pz .app-frame{width:340px;height:693px;margin:0 auto}
+  .pz.top{aspect-ratio:340/420}
+  .pz.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,transparent,#0D0A15 92%);pointer-events:none}
+  .pz.bot{aspect-ratio:340/330;display:flex;align-items:flex-end}
+  .pz.bot::after{content:"";position:absolute;left:0;right:0;top:0;height:90px;background:linear-gradient(0deg,transparent,#0D0A15 92%);pointer-events:none}
   .ap .phone-solo{max-width:288px;margin:0 auto}
   .legal a,.nav-link{display:inline-block;padding:8px 2px}
 </style>
@@ -98,7 +107,7 @@
     <p class="eyebrow reveal">Live presence</p>
     <h2 class="reveal">They&rsquo;re right<br><span class="grad-text">there with you.</span></h2>
     <p class="apsub reveal">Mid-set, your friend&rsquo;s face is the screen. One tap sends a 🔥 they feel instantly.</p>
-    <div class="lens reveal" style="--ty:-16.5%"><img src="assets/screens/session.png?v=8" alt="Riley live in your workout: Your move now, one-tap Cheer" loading="lazy"></div>
+    <div class="pz top reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/session.png?v=8" alt="Riley live in your workout: Your move now, one-tap Cheer" loading="lazy"></div></div></div>
   </div>
 </section>
 
@@ -116,7 +125,7 @@
     <p class="eyebrow reveal">Replay</p>
     <h2 class="reveal">Friends run<br><span class="grad-text">it back.</span></h2>
     <p class="apsub reveal">Miss it live? Their workout waits for you, and every replay shows up on the post.</p>
-    <div class="lens wide reveal" style="--ty:-60%"><img src="assets/screens/postdetail.png?v=8" alt="Replay with Jordan: Casey, Jordan and 36 others, 19 replayed" loading="lazy"></div>
+    <div class="pz bot reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/postdetail.png?v=8" alt="Replay with Jordan: Casey, Jordan and 36 others, 19 replayed" loading="lazy"></div></div></div>
   </div>
 </section>
 
