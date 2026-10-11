@@ -6,7 +6,8 @@
         "appIDs": ["356D828QY6.com.colift.app"],
         "components": [
           { "/": "/i", "comment": "invite + replay deep links" },
-          { "/": "/i/*" }
+          { "/": "/i/*" },
+          { "/": "/g/*", "comment": "group invite deep links" }
         ]
       }
     ]

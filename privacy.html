@@ -18,50 +18,109 @@
   <h1>Privacy Policy</h1>
   <div class="updated">Last updated: October 2026</div>
 
-  <p>CoLift ("we," "us") makes a social fitness app where you train alongside a friend. This policy explains what we collect, why, and the control you have. We do not sell your personal data, and we do not run ads.</p>
+  <p>CoLift ("we," "us") makes an app for logging workouts and lifting with friends and with local lifting groups. This policy explains what we collect, why, who processes it, how long we keep it, and how to delete it. We do not sell your personal data, we do not run ads, and we do not track you across other companies' apps or websites.</p>
 
   <h2>What we collect</h2>
   <ul>
-    <li><strong>Account info</strong>: your name and the sign-in identifier you use (Sign in with Apple or Google). </li>
-    <li><strong>Your activity</strong>: workouts you log, moments you capture, streaks, reactions, and comments.</li>
-    <li><strong>Optional content</strong>: photos/video you choose to capture during a workout.</li>
-    <li><strong>Contacts (optional, stays on your device)</strong>: if you choose to invite friends from your contacts, CoLift reads your contacts on your device only to show you the list. Your contacts are not uploaded to or stored on our servers, and we never share them.</li>
-    <li><strong>CoLift+ logs (optional)</strong>: food, calories, macros, body weight, and goals you enter.</li>
-    <li><strong>Device &amp; usage</strong>: basic diagnostics to keep the app working (crash and performance data).</li>
+    <li><strong>Account and profile</strong>: when you use Sign in with Apple we receive a unique user ID and the name and email address Apple shares with you (this can be Apple's private relay address if you choose Hide My Email). You also set a display name, a @handle, and optionally a profile photo. A one-line bio, if you add one, stays on your phone.</li>
+    <li><strong>Age band</strong>: before your first friend request, friend acceptance or any Groups action, CoLift needs to know whether you are under 13, 13 to 17, or 18 or older. Where your iPhone offers it, Apple's Declared Age Range service can tell us this range without sharing your birth date; otherwise you enter your birth month and year (sometimes the day, when your 13th or 18th birthday falls in that month). Either way we store only the band, never your birth date, and we never show your band to other users. Once set, the band cannot be changed in the app; if it is wrong, contact support. CoLift is not available to people under 13: if you indicate you are under 13, social features stay blocked and we store only that result, not your birth date.</li>
+    <li><strong>Workouts and fitness data</strong>: the workouts, exercises, sets, weights, reps, streaks and history you log, and the workouts you leave for or run with friends.</li>
+    <li><strong>Photos and videos</strong>: the workout moments (photos or short videos) you choose to capture and share, and the profile photo you choose. Group chat does not carry photos or videos.</li>
+    <li><strong>Social content</strong>: friends and friend requests, reactions, comments, captions, and direct sends to friends.</li>
+    <li><strong>Groups and events</strong>: the groups you create or join (name, description, activity tags, city, the public venue the host picks, privacy setting, invite code), join requests and their short note, your role in a group, events you create (title, description, time, venue, capacity), your RSVPs, group chat messages, workout cards you share into a group, and the posts you choose to tag to a group.</li>
+    <li><strong>Safety records</strong>: reports you file about people, groups, events, messages or content, and the people you block. When a report is filed we keep a snapshot of the reported content, the recent messages of that conversation or group, and basic details of the group, so we can review it even if the content is later deleted. Group owners and admins can remove members, ban people, mute a member, lock the chat and cancel events; those actions are recorded with the group.</li>
+    <li><strong>Purchase information</strong>: if you subscribe to CoLift+, Apple processes the payment. Our subscription provider, RevenueCat, receives an app user identifier, a device identifier and your purchase and subscription status so we can unlock CoLift+. We do not receive your card details.</li>
+    <li><strong>Music search (optional)</strong>: if you attach a song to a moment, the search term you type is sent to Apple's iTunes Search service. The song picker also loads Apple's public Apple Music most-played chart, album artwork and 30-second previews from Apple servers; no account data is sent with these requests (Apple sees the usual connection details such as your IP address).</li>
+  </ul>
+
+  <h2>Location</h2>
+  <p>Location is optional and CoLift works without it. You can pick a city by name instead, which needs no permission.</p>
+  <ul>
+    <li>If you tap <strong>Use my location</strong> in Groups, CoLift asks iOS for permission while you use the app, reads one approximate position, and on your phone rounds it to a grid of 0.05 degrees (roughly 5 km) before anything is sent. Only that rounded area is used, to find groups and events near you. Our server rounds it again and does not store it.</li>
+    <li>We do not read your location in the background, do not watch it continuously, do not keep a location history, and do not show your location to other people. Distances to groups are shown in ranges, such as "Under 5 km", never exact figures.</li>
+    <li>The last city or rounded area you chose can be remembered on your phone so the screen opens where you left it. You can turn location off at any time in iOS Settings.</li>
+    <li>A group or event has a venue, a public place such as a gym or park, chosen by the host from a place search or on the map. It is never taken from the host's GPS. It is stored with its coordinates rounded to about 110 m and is shown to people who can see that group or event. Please do not use a private home as a venue.</li>
+    <li>Place search: when you search for a gym, park or city, your search text goes to our own servers (Supabase) with your signed-in account so we can limit abuse. We do not send it to any map or search company, and we do not keep a history of what you typed. The place list comes from OpenStreetMap and GeoNames open data stored in our own database; see <a href="attributions.html">Attributions</a>.</li>
+  </ul>
+
+  <h2>Age rules for groups</h2>
+  <p>CoLift is for people aged 13 and over. Finding groups in Explore and Local, joining public or request-to-join groups, and chatting in them are for people aged 18 and over. People aged 13 to 17 can use only private, invite-only groups, and only with people connected to the group owner as friends. The age band is checked on our server, not only in the app, and an account that has not given its age is treated like an under 18 account.</p>
+
+  <h2>Device permissions</h2>
+  <ul>
+    <li><strong>Camera and microphone</strong>: only to capture a workout photo or video when you tap capture. Optional.</li>
+    <li><strong>Photos</strong>: to save your workout recap card to your library, and to let you choose a picture for your profile or a moment. Optional.</li>
+    <li><strong>Location (while using the app)</strong>: only when you tap Use my location, as described above. Optional.</li>
+    <li><strong>Health (Apple Watch)</strong>: only if you use the CoLift Apple Watch app, as described below. Optional.</li>
+  </ul>
+  <p>The app has no advertising SDK and no third-party analytics or error-tracking SDK. Friends are invited with a link through the share sheet. We do not currently send push notifications.</p>
+
+  <h2>Apple Watch and Apple Health</h2>
+  <p>If you use the CoLift app on Apple Watch, the Watch reads your heart rate and active energy with Apple HealthKit, only during a workout you start on the Watch, so your workout summary can show them. Your Watch asks for Health permission when you start. When the workout ends, the Watch can save one strength workout to Apple Health so it counts toward your Activity rings.</p>
+  <p>Health data stays on your Apple Watch and iPhone, and in Apple Health under your control. CoLift does not send your heart rate or active energy to our servers, does not show it to other users, and never uses it for advertising, marketing or data mining. You can revoke access at any time in the Health app (Sharing, Apps) or iPhone Settings, Privacy &amp; Security, Health.</p>
+
+  <h2>Strava (optional)</h2>
+  <ul>
+    <li><strong>Share to Strava</strong>: when you choose it, CoLift builds a workout file on your device and hands it to the iOS share sheet. You pick where it goes, for example Strava or Files. We do not send it to Strava or to our servers. Strava's own terms and privacy settings apply to whatever you post there.</li>
+    <li>Connecting a Strava account is not part of this version of CoLift, and CoLift does not hold a Strava access grant for you.</li>
   </ul>
 
   <h2>How we use it</h2>
-  <p>To run the core experience (showing your presence to friends you've added, your feed, streaks, and tracking), to keep the app reliable and safe, and to contact you about your account. That's it.</p>
+  <p>To run the app: show your workouts, moments and activity to the friends you have connected with, run groups, events and group chat, show groups and events near the area you choose, deliver direct sends, keep your history and streaks, unlock CoLift+, keep the community safe (reports, blocks, automatic text checks, enforcing our <a href="terms.html">Terms</a> and <a href="guidelines.html">Community Guidelines</a>), and reply to your support messages. We do not use your data for advertising.</p>
 
-  <h2>Who can see your activity</h2>
-  <p>You control who sees your workouts and moments. By default they're shared only with friends you've connected with. We do not make your content public without your action.</p>
-
-  <h2>Sharing</h2>
-  <p>We use a small number of service providers (hosting, crash reporting, payment processing through Apple) strictly to operate the app. Any third party we share data with — including our hosting, analytics and payment providers, and any parent, subsidiary or related entity with access to user data — is contractually required to provide the same or equal protection of your data as set out in this policy. We do not sell your data and we do not share it for advertising.</p>
-
-  <h2>Your choices &amp; rights</h2>
+  <h2>Who can see your content</h2>
   <ul>
-    <li>Edit or remove content you've posted at any time.</li>
-    <li>Delete your account and associated data in-app. See <a href="delete-account.html">Delete account</a>.</li>
-    <li>Request a copy of your data by emailing us.</li>
+    <li><strong>Friends</strong>: workouts, moments, comments and reactions are shared with friends you have connected with. Direct sends go only to the friend you choose, are viewable once for a short time, and expire after 24 hours.</li>
+    <li><strong>Profile</strong>: your display name, @handle and profile photo are visible to other CoLift users who look you up. Profile photos are stored in a public storage location (provided by Supabase), so anyone who has the exact image link can open it; the link is not listed or searchable and is not access-controlled, so do not use a photo you would not want others to see.</li>
+    <li><strong>Groups</strong>: groups are Public (anyone 18 or older can join), Request (an owner or admin approves you) or Private (invite code or link only). People who can discover a Public or Request group see its name, description, activity, city or venue, number of members, next event time and up to three host names. Only members can see the member list, the chat, events in detail and who is going.</li>
+    <li><strong>Group chat</strong> is text and shared workout cards. It is readable by the members of that group and, when a message is reported, by CoLift reviewers. It is not end-to-end encrypted. Phone numbers, email addresses, links and @handles are blocked in group chat for your safety, and you should not share your contact details in a group.</li>
+    <li><strong>Posts tagged to a group</strong> are visible to the current members of that group. The author can remove the tag at any time, which hides the post from the group again.</li>
+    <li>We do not publish your workouts or moments publicly.</li>
   </ul>
+  <p>Meeting people in person is your choice and your risk. CoLift does not check members or venues. Meet in a public place and tell a friend where you are going.</p>
 
-  <h2>Data retention</h2>
-  <p>We keep your data while your account is active. When you delete your account, we remove your personal data within 30 days, except where we're required to retain limited records by law.</p>
+  <h2>Service providers</h2>
+  <p>We use a small number of providers strictly to operate the app. We do not sell your data and we do not share it for advertising.</p>
+  <ul>
+    <li><strong>Supabase</strong>: hosts our database, sign-in, file storage, and server functions (including place search and group discovery).</li>
+    <li><strong>Apple</strong>: Sign in with Apple, the App Store and in-app purchase processing, HealthKit on your devices, and the iTunes Search and Apple Music chart services in the song picker.</li>
+    <li><strong>RevenueCat</strong>: manages subscription status for CoLift+.</li>
+    <li><strong>Cloudflare</strong>: provides DNS and delivery for colift.fit, and hosts our map files (tiles.colift.fit, on Cloudflare R2) as static files. When the map loads, Cloudflare sees your IP address and which map areas you request, which can reveal the area you are viewing. These requests carry no account data and no cookies, and we do not link them to your account.</li>
+  </ul>
+  <p>Each processes data on our behalf, or on its own account where you use its service directly, under its own terms and privacy policy. We may also disclose information if required by law or to protect people's safety.</p>
+
+  <h2>Retention and deletion</h2>
+  <ul>
+    <li>We keep your data while your account is active.</li>
+    <li><strong>Delete your account in the app</strong>: You tab, Settings, Delete account. This deletes your account and the content tied to it (profile, workouts, moments, comments, reactions, friends, group memberships, RSVPs, join requests and your group chat messages), and removes your uploaded photos, videos and profile picture from storage. It also revokes the Sign in with Apple link. Deletion happens when you confirm. Copies in encrypted provider backups may remain for a short period (up to 30 days) before they are overwritten.</li>
+    <li><strong>Groups you own</strong>: when you delete your account, ownership of each group passes to its longest-standing admin, or if there is none its longest-standing member, and events you hosted go with it. If nobody else is in the group, the group is deleted with its events, chat messages, posts and requests.</li>
+    <li>Group chat messages stay while the group exists. Deleting a message hides it from members, and a copy may be kept on our servers until the group or the author's account is deleted, or, if a report is open, for the safety snapshot period above.</li>
+    <li>Deleting the account does not cancel an active subscription. Cancel it in iOS Settings, your name, Subscriptions.</li>
+    <li>Direct sends expire after 24 hours and their files are then removed; a send that someone has reported may be kept longer for review.</li>
+    <li>Safety snapshots: when a report is open, the snapshot we took of the reported content and the recent conversation is kept for 90 days, even if the reporter or the reported person deletes their account, and is then deleted. It holds no other data from your account. We may keep information longer only where the law requires it, for example when we must report a child-safety matter to the authorities.</li>
+    <li>You can also email us to ask for a copy of your data or to delete it if you cannot use the app.</li>
+  </ul>
+  <p>You can edit or remove content you posted at any time. See also <a href="delete-account.html">Delete account</a>.</p>
 
   <h2>Children</h2>
-  <p>CoLift is not directed to children under 13 (or the minimum age in your region). We don't knowingly collect their data.</p>
+  <p>CoLift is for people aged 13 and over (or the minimum age in your region). It is not directed to children under 13 and we do not knowingly collect their data. People under 18 cannot use Explore, Local or public group chat, and friend connections between adults and people under 18 are not available. If you believe a child under 13 has given us data, email us and we will delete it.</p>
+
+  <h2>Health disclaimer</h2>
+  <p>CoLift is a workout log, not a medical device. Heart rate and energy figures are estimates from your Apple Watch and are not medical advice. See the <a href="terms.html">Terms</a>.</p>
+
+  <h2>Security</h2>
+  <p>Data is sent over HTTPS and access is limited by database rules so people only see what is shared with them. No system is perfectly secure.</p>
 
   <h2>Changes</h2>
-  <p>We'll post any changes here and update the date above.</p>
+  <p>We will post changes here and update the date above.</p>
 
   <h2>Contact</h2>
-  <p>Questions? <a href="mailto:colift.app.official@gmail.com">colift.app.official@gmail.com</a>.</p>
+  <p>Questions, requests, or a safety report? <a href="mailto:colift.app.official@gmail.com">colift.app.official@gmail.com</a>.</p>
 </main>
 
 <footer class="site"><div class="wrap cols">
   <div><a class="brand" href="index.html"><img class="logo" src="assets/logo.png" alt="COLIFT" style="height:24px"></a><p class="copy">© 2026 CoLift.</p></div>
-  <div><div class="col-h">Legal</div><div class="legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="support.html">Support</a><a href="delete-account.html">Delete account</a></div></div>
+  <div><div class="col-h">Legal</div><div class="legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="guidelines.html">Community Guidelines</a><a href="support.html">Support</a><a href="delete-account.html">Delete account</a><a href="attributions.html">Attributions</a></div></div>
 </div></footer>
 </body>
 </html>

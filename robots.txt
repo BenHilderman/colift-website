@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /g/
+Disallow: /strava/
 Sitemap: https://colift.fit/sitemap.xml

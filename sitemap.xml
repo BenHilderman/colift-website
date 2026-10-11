@@ -3,6 +3,8 @@
   <url><loc>https://colift.fit/</loc><priority>1.0</priority></url>
   <url><loc>https://colift.fit/privacy.html</loc><priority>0.4</priority></url>
   <url><loc>https://colift.fit/terms.html</loc><priority>0.4</priority></url>
+  <url><loc>https://colift.fit/guidelines.html</loc><priority>0.4</priority></url>
   <url><loc>https://colift.fit/support.html</loc><priority>0.4</priority></url>
   <url><loc>https://colift.fit/delete-account.html</loc><priority>0.4</priority></url>
+  <url><loc>https://colift.fit/attributions.html</loc><priority>0.3</priority></url>
 </urlset>

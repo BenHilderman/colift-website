@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Group invite · COLIFT</title>
+<meta name="description" content="You have been invited to a CoLift group. CoLift is a 13+ app; groups are 18+.">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/assets/icon.png">
+<link rel="apple-touch-icon" href="/assets/icon.png">
+<meta name="theme-color" content="#08080B">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .invite-card{margin:26px 0 8px;padding:22px;border-radius:20px;background:var(--card-2);border:0.5px solid var(--card-line);box-shadow:var(--card-shadow)}
+  .invite-code{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(26px,8vw,36px);letter-spacing:.08em;word-break:break-all;margin:6px 0 16px}
+  .invite-actions{display:flex;flex-wrap:wrap;gap:12px}
+  .invite-note{margin-top:20px;padding:14px 16px;border-radius:14px;border:0.5px solid var(--card-line);color:var(--muted);font-size:14.5px;line-height:1.55}
+  .invite-note strong{color:#fff}
+  .steps{margin:18px 0 0 20px}
+  .steps li{margin-bottom:8px}
+</style>
+</head>
+<body>
+<nav class="nav scrolled"><div class="wrap">
+  <a class="brand" href="/"><img class="logo" src="/assets/logo.png" alt="COLIFT" style="height:24px"></a>
+  <div class="nav-right"><a class="nav-link" href="/">&larr; Home</a></div>
+</div></nav>
+
+<main class="legal-page">
+  <h1>You're invited to a group</h1>
+  <div class="updated">A CoLift group invite</div>
+
+  <p>Someone invited you to join a lifting group on CoLift. If CoLift is installed on this iPhone, opening the invite link from Messages, Mail or Notes takes you straight into the app. If you are seeing this page, open CoLift yourself or get the app below.</p>
+
+  <div class="invite-card" id="card">
+    <div class="col-h" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:800">Invite code</div>
+    <code class="invite-code" id="code">&hellip;</code>
+    <div class="invite-actions">
+      <button class="btn" type="button" id="copy">Copy code</button>
+      <a class="btn btn-ghost" id="store" href="/">Get CoLift</a>
+    </div>
+    <ol class="steps">
+      <li>Get CoLift on the App Store and sign in with Apple.</li>
+      <li>Confirm your age in the app.</li>
+      <li>Open this link again, and CoLift takes you to the group. If it does not open by itself, go to <strong>Groups</strong>, tap <strong>Have an invite code?</strong>, then paste this code.</li>
+    </ol>
+  </div>
+  <p id="nocode" class="hidden">This link does not contain a valid invite code. Ask the person who invited you to send it again.</p>
+
+  <div class="invite-note"><strong>CoLift is a 13+ app; groups are 18+.</strong> Finding and joining public groups is for people 18 and older. People aged 13 to 17 can join only private, invite-only groups from people they know. Meet in a public place and tell a friend where you are going. CoLift does not vet members or venues. Read the <a href="/guidelines.html">Community Guidelines</a>.</div>
+
+  <p style="margin-top:18px;font-size:13.5px;color:var(--faint)">This page does not use cookies, analytics or trackers, and the invite code stays in your browser.</p>
+</main>
+
+<footer class="site"><div class="wrap cols">
+  <div><a class="brand" href="/"><img class="logo" src="/assets/logo.png" alt="COLIFT" style="height:24px"></a><p class="copy">&copy; 2026 CoLift.</p></div>
+  <div><div class="col-h">Legal</div><div class="legal"><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/guidelines.html">Community Guidelines</a><a href="/support.html">Support</a><a href="/delete-account.html">Delete account</a><a href="/attributions.html">Attributions</a></div></div>
+</div></footer>
+
+<script>
+(function () {
+  /* Mirrors app.js. TODO(founder): set APP_STORE_LIVE true and the real App Store URL at launch. */
+  var APP_STORE_LIVE = false;
+  var APP_STORE_URL = "https://apps.apple.com/app/idXXXXXXXXX";
+  var m = /^\/g\/([A-Za-z0-9]{6,16})\/?$/.exec(location.pathname);
+  var code = m ? m[1] : (new URLSearchParams(location.search).get("c") || "");
+  code = /^[A-Za-z0-9]{6,16}$/.test(code) ? code.toUpperCase() : "";
+  var card = document.getElementById("card"), none = document.getElementById("nocode");
+  if (!code) { card.classList.add("hidden"); none.classList.remove("hidden"); return; }
+  document.getElementById("code").textContent = code;
+  var store = document.getElementById("store");
+  if (APP_STORE_LIVE) { store.href = APP_STORE_URL; store.textContent = "Download on the App Store"; }
+  else { store.textContent = "CoLift is coming to the App Store"; }
+  var btn = document.getElementById("copy");
+  btn.addEventListener("click", function () {
+    function done() { btn.textContent = "Copied"; }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(code).then(done, fallback); return; }
+    } catch (e) {}
+    fallback();
+    function fallback() {
+      try { var r = document.createRange(); r.selectNodeContents(document.getElementById("code")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand("copy"); done(); } catch (e) {}
+    }
+  });
+})();
+</script>
+</body>
+</html>
