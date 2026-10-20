@@ -4,7 +4,7 @@
 // Waitlist backend: a Supabase Edge Function that stores the signup and emails a
 // confirmation FROM colift.app.official@gmail.com. See supabase/functions/waitlist-signup.
 const WAITLIST_ENDPOINT = "https://kcfceolxwmacgmmrjsva.supabase.co/functions/v1/waitlist-signup";
-const APP_STORE_LIVE = false;            // flip to true once the app is on the App Store
+let APP_STORE_LIVE = false;              // turns true by itself once the App Store lookup finds the app (see below); set true to force it
 const APP_STORE_URL  = "https://apps.apple.com/app/id6772358115";
 const INSTAGRAM_URL  = "https://instagram.com/colift.app";
 const TIKTOK_URL     = "https://tiktok.com/@colift.app";
@@ -26,7 +26,7 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
 /* ---- App Store live mode: swap waitlist -> badge ---- */
-if (APP_STORE_LIVE) {
+function applyStoreLive() {
   const form = document.getElementById("waitlist");
   const badges = document.getElementById("store-badges");
   const link = document.getElementById("appstore-link");
@@ -34,6 +34,15 @@ if (APP_STORE_LIVE) {
   if (badges) badges.classList.remove("hidden");
   if (link) link.href = APP_STORE_URL;
 }
+if (APP_STORE_LIVE) applyStoreLive();
+/* Self-flipping: ask Apple's public lookup whether the app is listed yet (no key, CORS open).
+   Until it is, visitors keep seeing the waitlist form; the moment it is, they see the Download button. */
+try {
+  fetch("https://itunes.apple.com/lookup?id=6772358115&country=ca&t=" + Date.now())
+    .then((r) => r.json())
+    .then((d) => { if (d && d.resultCount > 0 && !APP_STORE_LIVE) { APP_STORE_LIVE = true; applyStoreLive(); } })
+    .catch(() => {});
+} catch (e) {}
 
 /* ---- primary CTAs ---- */
 function focusWaitlist() {

@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="COLIFT | Lift with your friend, even when you cannot go at the same time">
 <meta name="twitter:description" content="Run your friend's workout when you can, find their photo at the same exercise, and leave one back.">
 <meta name="twitter:image" content="https://colift.fit/assets/og.png">
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
@@ -39,8 +39,8 @@
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1>Lift with your friend, even when you cannot go at the same time.</h1>
-      <p class="sub">Different times, same workout. Run their workout. Find their photo at the same exercise. Leave one back.</p>
+      <h1>Lift with a friend.<br><span class="grad-text">Even when you can&rsquo;t.</span></h1>
+      <p class="sub">Run what they left. Their photo&rsquo;s waiting.</p>
       <div class="cta-row" id="hero-cta">
         <form class="waitlist" id="waitlist">
           <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address">
@@ -49,101 +49,57 @@
         <div class="store-badges hidden" id="store-badges">
           <a class="btn" id="appstore-link" href="#">Download on the App&nbsp;Store</a>
         </div>
+        <p class="micro">Free to start. We&rsquo;ll email you when COLIFT opens.</p>
       </div>
     </div>
-
-    <div class="hero-shot">
-      <div class="app-frame hero-phone">
-        <div class="app-screen">
-          <img src="assets/screens/momentview.png?v=9" alt="A COLIFT post: a deadlift, with a front-camera selfie from a friend" loading="eager" width="402" height="874">
-        </div>
-      </div>
+    <div class="phones hero-shot" aria-label="COLIFT app screens">
+      <div class="ph"><img src="assets/screens/w-replay_lobby.webp" alt="COLIFT replay lobby: Replay with Riley and 3 more" width="640" height="1387" fetchpriority="high"></div>
+      <div class="ph"><img src="assets/screens/w-replay_session.webp" alt="COLIFT workout: Riley's photo at the back squat" width="640" height="1387" fetchpriority="high"></div>
     </div>
   </div>
 </header>
-<style>
-  /* Mobile: the APP is the hero, copy stays tight so the phone enters the first viewport */
-  @media (max-width:760px){
-    .hero{padding-top:86px}
-    .hero-copy h1{font-size:clamp(38px,11vw,52px);margin-bottom:10px}
-    .hero-copy .sub{font-size:15.5px;margin-bottom:16px}
-    .hero-grid{gap:22px}
-    .hero-phone{max-width:300px;margin:0 auto;width:min(300px,80vw);height:auto;aspect-ratio:332/676}
-    .hero-shot{margin-top:0}
-  }
-</style>
 
-<!-- ═══ APPLE-STYLE SHOWCASE, people + screenshots ARE the page ═══ -->
-<style>
-  .ap{padding:76px 0 30px;text-align:center;position:relative}
-  .ap .wrap{position:relative;max-width:560px}
-  .ap .eyebrow{font-size:13px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:#a1a1a6;margin-bottom:14px}
-  .ap h2{font-family:var(--display,inherit);font-size:clamp(34px,8.6vw,58px);font-weight:800;line-height:1.04;letter-spacing:-0.02em;color:#fff;margin:0 0 12px}
-  .ap p.apsub{font-size:16.5px;line-height:1.5;color:var(--muted,#9a93a8);max-width:34ch;margin:0 auto 34px}
-  /* ── APPLE PALETTE, neutral space-black canvas; color lives ONLY in the product + accents ── */
-  body{background:#000}
-  body::before{background:
-    radial-gradient(62% 34% at 50% 0%,rgba(140,60,255,0.10),transparent 62%),
-    linear-gradient(180deg,#0a0a0c 0%,#000 46%)}
-  .ap p.apsub,.hero .sub,.micro{color:#a1a1a6}
-  /* ── the iPHONE, thin bezel, titanium edge ring, side buttons, deep contact shadow ── */
-  .app-frame{background:#050506;padding:7px;border-radius:54px;
-    box-shadow:0 0 0 1.5px #4a4a4f,0 0 0 3px #131316,0 1px 0 2.5px rgba(255,255,255,0.12),0 44px 110px rgba(0,0,0,0.85)}
-  .app-screen{border-radius:47px}
-  .app-screen::before{display:none}
-  .app-frame::before{content:"";position:absolute;left:-4px;top:19%;width:3.5px;height:60px;border-radius:2px;background:linear-gradient(90deg,#5a5a60,#26262b);box-shadow:0 84px 0 0 #3a3a40;z-index:0}
-  /* phone-fold crops: a REAL iPhone, cut at the section fold (bezel edges stay visible) */
-  .pz{position:relative;overflow:hidden;max-width:404px;margin:0 auto}
-  .pz .app-frame{width:min(388px,92vw);height:auto;aspect-ratio:332/676;margin:0 auto}
-  .pz.top{aspect-ratio:340/440}
-  .pz.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(180deg,transparent,#000 94%);pointer-events:none;z-index:3}
-  .pz.bot{aspect-ratio:340/330;display:flex;align-items:flex-end}
-  .pz.bot::after{content:"";position:absolute;left:0;right:0;top:0;height:110px;background:linear-gradient(0deg,transparent,#000 94%);pointer-events:none;z-index:3}
-  .ap .phone-solo{max-width:330px;margin:0 auto;width:min(330px,84vw);height:auto;aspect-ratio:332/676}
-  .legal a,.nav-link{display:inline-block;padding:8px 2px}
-</style>
-
-<section class="ap" >
+<!-- HOW -->
+<section id="how" class="how">
   <div class="wrap">
-    <p class="eyebrow reveal">Handoff</p>
-    <h2 class="reveal">Their photo is<br>waiting at the exercise.</h2>
-    <p class="apsub reveal">Run the workout your friend left. At the exercise they shared, their photo is there, with how long ago they left it. Then leave one back.</p>
-    <div class="pz bot reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/momentview.png?v=9" alt="A friend's workout post, ready to replay" loading="lazy"></div></div></div>
+    <p class="eyebrow">How it works</p>
+    <h2 class="sec-h">Different times. Same workout.</h2>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><h3>Run what they left</h3><p>Open your friend&rsquo;s workout whenever you can. At each exercise they shared, their photo is there, with how long ago they left it.</p></div>
+      <div class="step"><span class="num">2</span><h3>Leave one back</h3><p>Snap yours at the same exercise. They find it next time they lift.</p></div>
+      <div class="step"><span class="num">3</span><h3>Overlap? Go live</h3><p>Start the same session, see when your friend is ready and send a cheer with one tap.</p></div>
+    </div>
   </div>
 </section>
 
-<section class="ap">
+<!-- ONE POST -->
+<section class="onepost">
   <div class="wrap">
-    <p class="eyebrow reveal">When you overlap</p>
-    <h2 class="reveal">Sometimes you<br>lift at the same time.</h2>
-    <p class="apsub reveal">Start the same session, see when your friend is ready, and send a cheer with one tap.</p>
-    <div class="pz top reveal"><div class="app-frame"><div class="app-screen"><img src="assets/screens/lobby.png?v=9" alt="The COLIFT lobby: Tyler and you warming up for push day" loading="lazy"></div></div></div>
-  </div>
-</section>
-
-<section class="ap" style="padding-bottom:96px">
-  <div class="wrap">
-    <p class="eyebrow reveal">Share it</p>
-    <h2 class="reveal">A workout you post<br>is one shared post.</h2>
-    <p class="apsub reveal">The lift, the photos and your friends&rsquo; reactions, together in one place. Posting is your choice every time.</p>
-    <div class="app-frame phone-solo reveal"><div class="app-screen"><img src="assets/screens/moments.png?v=9" alt="A shared COLIFT post: Frankie and Tyler, lifted live" loading="lazy"></div></div>
+    <div class="op-copy">
+      <h2 class="sec-h">One workout.<br><span class="grad-text">One post.</span></h2>
+      <p class="sec-sub">Finish together or on your own time. The lift, the photos and your friends&rsquo; reactions come together in one post. Posting is your choice every time.</p>
+    </div>
+    <div class="phones">
+      <div class="ph"><img src="assets/screens/w-now_friend.webp" alt="A shared COLIFT post in the feed: Riley's leg day, with your selfie in the corner" width="640" height="1387" loading="lazy" decoding="async"></div>
+      <div class="ph"><img src="assets/screens/w-post_done.webp" alt="COLIFT push day done screen with Post, Share and Save photo" width="640" height="1387" loading="lazy" decoding="async"></div>
+    </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section id="faq">
   <div class="wrap">
-    <h2 class="sec-h reveal" style="text-align:center;margin-bottom:34px">Questions</h2>
-    <div class="faq reveal">
+    <h2 class="sec-h faq-h">Questions</h2>
+    <div class="faq">
       <details><summary>What is COLIFT?</summary><p>A workout log for lifting with a friend, even when you cannot go at the same time. A friend leaves you their workout, you run it when you can, and at the exercises they shared you see their photo and how long ago they left it. Then you leave one back.</p></details>
       <details><summary>How does my friend show up at my set?</summary><p>When you run a friend's workout, the photo they took at an exercise appears at that same exercise, with how long ago they left it. Only friends who run that lift see it, and nothing is public. You can report or block anyone, any time.</p></details>
       <details><summary>Who is COLIFT for?</summary><p>Anyone who wants to lift with a friend whose hours do not match theirs: a gym friend on a different schedule, a friend who moved away after graduating, or someone who misses having a team to lift with. It is built in Ontario, Canada. You start with one friend; groups come after.</p></details>
       <details><summary>Do we have to work out at the same time or place?</summary><p>No, that's the point. Catch a friend's lift live, or run their exact workout later, at a different gym and a different time. The recap shows how far apart you lifted, like &ldquo;6h apart&rdquo;.</p></details>
       <details><summary>Is there any competition or ranking?</summary><p>No. There are no rankings, no leaderboards and no wagers. Friends see moments, and the Our week page counts what you did together. Your own history and personal records stay yours.</p></details>
-      <details><summary>Is it free?</summary><p>Yes. The core (replays, the feed, reactions, a daily streak) is free. <strong>COLIFT+</strong> is an optional upgrade: Coach Maya, our automated planner, runs your split, your whole story is kept up to 500 lifts (free keeps your latest 7), and you get one rest-day cover a month. Cancel anytime in your Apple Account settings.</p></details>
+      <details><summary>Is it free?</summary><p>Yes. The core (replays, the feed and reactions) is free. <strong>COLIFT+</strong> is an optional upgrade: Coach Maya, our automated planner, runs your split, your whole story is kept up to 500 lifts (free keeps your latest 7), and you get one rest-day cover a month. Cancel anytime in your Apple Account settings.</p></details>
       <details><summary>Can I find lifting groups near me?</summary><p>Start with one friend; groups and events come after. Finding and joining public groups is for people 18 and older, and location is optional: you can pick a city instead. People 13 to 17 can use private groups with friends. See the <a href="guidelines.html">Community Guidelines</a> and <a href="privacy.html">Privacy Policy</a>.</p></details>
       <details><summary>Is my data private?</summary><p>You choose who sees each post: Everyone, Friends or Only me. Your profile photo is stored at a public link, as the privacy policy explains. We don't sell your data or run ads. See our <a href="privacy.html">Privacy Policy</a>.</p></details>
-      <details><summary>How do I cancel COLIFT+ or delete my account?</summary><p>Cancel CoLift+ anytime in iOS Settings. You can delete your account right in the app. Here's <a href="delete-account.html">how</a>.</p></details>
+      <details><summary>How do I cancel COLIFT+ or delete my account?</summary><p>Cancel COLIFT+ anytime in iOS Settings. You can delete your account right in the app. Here's <a href="delete-account.html">how</a>.</p></details>
     </div>
   </div>
 </section>
@@ -151,9 +107,9 @@
 <!-- FOOTER CTA -->
 <section class="footer-cta">
   <div class="wrap">
-    <h2>Your friend's waiting.<br><span class="line2">Get COLIFT.</span></h2>
+    <h2>Your friend&rsquo;s waiting.<br><span class="line2">Get COLIFT.</span></h2>
     <div class="cta-row" id="footer-cta">
-      <button class="btn" data-cta style="height:54px;padding:0 32px;font-size:16px">Get early access</button>
+      <button class="btn" data-cta >Get early access</button>
       <p class="micro">Free to start.</p>
     </div>
   </div>
@@ -180,7 +136,7 @@
     <div>
       <div class="col-h">Contact</div>
       <div class="legal">
-        <a href="mailto:colift.app.official@gmail.com">colift.app.official@gmail.com</a>
+        <a class="mail" href="mailto:colift.app.official@gmail.com">colift.app.official@gmail.com</a>
       </div>
       <div class="socials">
         <a href="#" id="ig-link" aria-label="COLIFT on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>

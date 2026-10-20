@@ -270,3 +270,74 @@ footer.site .copy{color:var(--faint);font-size:12.5px;margin-top:30px}
   .tag-live .ld{animation:none}
   .f-media .app-frame{transform:none!important}
 }
+
+
+/* ============ v10 refresh: matches the App Store screenshots ============ */
+html{overflow-x:clip}
+body{background:#050507;overflow-x:clip}
+body::before{background:radial-gradient(70% 38% at 50% 0%,rgba(150,30,235,0.34),transparent 64%),radial-gradient(50% 30% at 90% 14%,rgba(255,0,221,0.12),transparent 62%),linear-gradient(180deg,#0b0613 0%,#060509 46%,#050507 100%)}
+.grad-text,.footer-cta .line2,.manifesto .accent{background:linear-gradient(100deg,#FF00DD,#CC00FF 55%,#9a3cff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero .sub,.sec-sub,.micro{color:rgba(255,255,255,0.72)}
+.micro{font-size:13.5px}
+.btn{min-height:48px}
+.btn-sm{min-height:44px}
+.nav-link{display:inline-flex;align-items:center;min-height:44px}
+.brand{min-height:44px}
+.socials a{width:44px;height:44px}
+footer.site .legal a{display:inline-flex;align-items:center;min-height:44px;padding:0}
+footer.site .legal{gap:0}
+footer.site .legal a.mail{word-break:break-all}
+
+/* hero */
+.hero{padding:120px 0 40px;overflow:hidden}
+.hero-grid{grid-template-columns:1fr 1fr;gap:32px;min-height:min(78vh,700px)}
+.hero h1{text-transform:uppercase;font-size:clamp(48px,6.6vw,92px);line-height:.94;max-width:none;letter-spacing:0}
+.hero .sub{margin-top:20px;font-size:clamp(18px,2vw,22px);max-width:38ch}
+.hero .cta-row{margin-top:28px}
+
+/* phone pair: sharp screens, soft purple glow */
+.phones{position:relative;display:flex;justify-content:center;align-items:flex-start;gap:clamp(10px,2vw,22px)}
+.phones::before{content:"";position:absolute;inset:6% -4% 0;z-index:-1;border-radius:50%;filter:blur(70px);background:radial-gradient(circle,rgba(160,40,240,0.45),rgba(255,0,221,0.12) 50%,transparent 72%)}
+.ph{width:min(240px,42vw);flex:0 1 240px;border-radius:clamp(22px,3.6vw,34px);overflow:hidden;background:#0a0612;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.16),0 0 0 4px rgba(10,6,16,0.9),0 24px 60px rgba(0,0,0,0.6),0 0 60px rgba(160,40,240,0.28)}
+.ph img{width:100%;height:auto;aspect-ratio:640/1387;display:block}
+.ph:nth-child(2){margin-top:clamp(36px,6vw,72px)}
+.hero-shot{animation:heroIn 1s cubic-bezier(.22,1,.36,1) .2s both}
+
+/* sections */
+section{padding:72px 0}
+.eyebrow{font-size:13px;margin-bottom:12px;background:none;-webkit-text-fill-color:#e08cff;color:#e08cff}
+.sec-h{text-transform:uppercase;font-size:clamp(36px,5.6vw,64px);line-height:.96;letter-spacing:0}
+.sec-sub{margin-top:16px;font-size:clamp(16px,1.9vw,19px);max-width:44ch}
+.how{text-align:center}
+.steps{gap:16px;margin-top:40px}
+.step{padding:26px 24px}
+.step .num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:var(--grad);font-family:var(--disp);font-weight:900;font-size:22px;color:#fff}
+.step h3{font-size:20px;margin:16px 0 8px}
+.step p{font-size:16px;color:rgba(255,255,255,0.78)}
+.onepost .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.onepost .phones{order:2}
+.faq-h{text-align:center;margin-bottom:34px}
+.faq summary{min-height:56px;font-size:17px}
+.faq p{font-size:16px;color:rgba(255,255,255,0.78)}
+.footer-cta h2{text-transform:uppercase;font-size:clamp(44px,8vw,96px)}
+.footer-cta .cta-row{align-items:center}
+.mobile-bar .mb-t span{font-size:12.5px;color:rgba(255,255,255,0.62)}
+
+@media(max-width:760px){
+  section{padding:52px 0}
+  .hero{padding:92px 0 24px}
+  .hero-grid{grid-template-columns:1fr;gap:28px;min-height:0}
+  .hero h1{font-size:clamp(44px,13vw,60px);max-width:none}
+  .hero .sub{margin-left:auto;margin-right:auto;font-size:18px}
+  .waitlist{flex-direction:column;max-width:none}
+  .waitlist input{flex:none;width:100%}
+  .waitlist .btn{width:100%}
+  .cta-row{align-items:stretch;text-align:center}
+  .hero .store-badges{justify-content:center}
+  .ph{width:44vw;flex:0 1 44vw}
+  .onepost .wrap{grid-template-columns:1fr;text-align:center;gap:30px}
+  .onepost .phones{order:2}
+  .sec-sub{margin-left:auto;margin-right:auto}
+  .hero-shot{width:auto;margin-top:0}
+}
