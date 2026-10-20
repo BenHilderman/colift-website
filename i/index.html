@@ -50,7 +50,7 @@
           <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address">
           <button class="btn" type="submit">Save my spot</button>
         </form>
-        <p class="micro">Free to join. We'll let your friend know you're in.</p>
+        <p class="micro">Free to join. We'll email you when CoLift is ready to download.</p>
         <div class="store-badges hidden" id="store-badges">
           <a class="btn" id="appstore-link" href="#">Download on the App&nbsp;Store</a>
         </div>
@@ -137,7 +137,10 @@
     if (r) {
       try {
         var pl = JSON.parse(decodeURIComponent(escape(atob(r.replace(/-/g, "+").replace(/_/g, "/")))));
-        var w = (pl.w || "A friend"), t = (pl.t || "a workout"), xs = (pl.x || []);
+        /* the payload is attacker-controlled: coerce to short plain strings and escape before any innerHTML */
+        var esc = function (v) { return String(v == null ? "" : v).slice(0, 60).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+        var w = esc(pl.w || "A friend"), t = esc(pl.t || "a workout");
+        var xs = (Array.isArray(pl.x) ? pl.x : []).slice(0, 8).map(esc);
         var wCap = w.charAt(0).toUpperCase() + w.slice(1);
         /* pill: "{w} sent you {t} · run it back" */
         var pill = document.getElementById("invite-pill");

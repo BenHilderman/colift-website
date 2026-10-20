@@ -5,7 +5,7 @@
 // confirmation FROM colift.app.official@gmail.com. See supabase/functions/waitlist-signup.
 const WAITLIST_ENDPOINT = "https://kcfceolxwmacgmmrjsva.supabase.co/functions/v1/waitlist-signup";
 const APP_STORE_LIVE = false;            // flip to true once the app is on the App Store
-const APP_STORE_URL  = "https://apps.apple.com/app/idXXXXXXXXX";
+const APP_STORE_URL  = "https://apps.apple.com/app/id6772358115";
 const INSTAGRAM_URL  = "https://instagram.com/colift.app";
 const TIKTOK_URL     = "https://tiktok.com/@colift.app";
 
