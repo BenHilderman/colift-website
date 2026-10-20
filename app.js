@@ -26,13 +26,25 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
 /* ---- App Store live mode: swap waitlist -> badge ---- */
+const APP_STORE_PT = "";                  // App Store Connect > App Analytics > Campaigns provider token (founder fills in); omitted while empty
+/* Campaign link: ct = channel tag (the invite page sets window.CL_CT from ?c=). Aggregate, privacy-safe per-campaign counts in ASC. */
+function storeUrl() {
+  const ct = (window.CL_CT && /^[a-z0-9_-]{1,24}$/.test(window.CL_CT)) ? window.CL_CT : "website";
+  return APP_STORE_URL + "?" + (APP_STORE_PT ? "pt=" + encodeURIComponent(APP_STORE_PT) + "&" : "") + "ct=" + ct + "&mt=8";
+}
+function refreshStoreLink() { const l = document.getElementById("appstore-link"); if (l && APP_STORE_LIVE) l.href = storeUrl(); }
+window.refreshStoreLink = refreshStoreLink;
 function applyStoreLive() {
   const form = document.getElementById("waitlist");
   const badges = document.getElementById("store-badges");
   const link = document.getElementById("appstore-link");
+  const wnote = document.getElementById("waitlist-note");
+  const snote = document.getElementById("store-note");
   if (form) form.classList.add("hidden");
+  if (wnote) wnote.classList.add("hidden");
+  if (snote) snote.classList.remove("hidden");
   if (badges) badges.classList.remove("hidden");
-  if (link) link.href = APP_STORE_URL;
+  if (link) link.href = storeUrl();
 }
 if (APP_STORE_LIVE) applyStoreLive();
 /* Self-flipping: ask Apple's public lookup whether the app is listed yet (no key, CORS open).
@@ -53,7 +65,7 @@ function focusWaitlist() {
 }
 document.querySelectorAll("[data-cta]").forEach((b) => {
   b.addEventListener("click", () => {
-    if (APP_STORE_LIVE) { window.location.href = APP_STORE_URL; } else { focusWaitlist(); }
+    if (APP_STORE_LIVE) { window.location.href = storeUrl(); } else { focusWaitlist(); }
   });
 });
 

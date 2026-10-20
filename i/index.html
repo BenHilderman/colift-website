@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>You're invited to COLIFT: Never train alone</title>
-<meta name="description" content="A friend wants to lift with you on CoLift. Same workout, different schedules. One shared post.">
+<title>A friend invited you to CoLift</title>
+<meta name="description" content="Leave your lifting partner the workout you just did, with a photo, and run theirs when you can't train at the same time.">
 <meta name="robots" content="noindex">
+<meta name="apple-itunes-app" content="app-id=6772358115, app-argument=https://colift.fit/i">
 <link rel="icon" href="../assets/icon.png">
 <link rel="apple-touch-icon" href="../assets/icon.png">
 <meta name="theme-color" content="#08080B">
@@ -42,17 +43,27 @@
       <div class="invite-pill" id="invite-pill">
         <span class="dot"></span> <b id="invite-who">A friend</b>&nbsp;invited you to lift together
       </div>
-      <h1>Never train <span class="grad-text">alone.</span></h1>
-      <p class="sub">Do the <strong>same workout</strong> (live together or on your own time) and every session becomes one shared post.</p>
+      <h1>Be their <span class="grad-text">lifting partner.</span></h1>
+      <p class="sub">Leave your lifting partner the workout you just did, with a photo, and run theirs when you can't train at the same time.</p>
       <div class="cta-row" id="hero-cta">
         <form class="waitlist" id="waitlist">
           <input type="hidden" name="ref" id="ref-field" value="">
           <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address">
           <button class="btn" type="submit">Save my spot</button>
         </form>
-        <p class="micro">Free to join. We'll email you when COLIFT is ready to download.</p>
+        <p class="micro" id="waitlist-note">CoLift is not in the App Store yet. Leave your email and we will write when it opens.</p>
         <div class="store-badges hidden" id="store-badges">
-          <a class="btn" id="appstore-link" href="#">Download on the App&nbsp;Store</a>
+          <a class="btn" id="appstore-link" href="https://apps.apple.com/app/id6772358115">Download on the App&nbsp;Store</a>
+        </div>
+        <p class="micro hidden" id="store-note">Free to start. iPhone only for now.</p>
+        <div class="invite-steps hidden" id="invite-steps">
+          <ol>
+            <li>Get CoLift on your iPhone.</li>
+            <li id="step-2">Open it, tap Paste a link, and paste your invite.</li>
+            <li id="step-3">Say yes to adding your friend.</li>
+          </ol>
+          <button class="btn btn-ghost" type="button" id="copy-invite">Copy my invite link</button>
+          <p class="micro" id="copy-status" role="status" aria-live="polite"></p>
         </div>
       </div>
     </div>
@@ -105,60 +116,141 @@
   .invite-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--grad);margin-right:7px;
     box-shadow:0 0 10px rgba(204,0,255,0.7);animation:pillpulse 2.2s ease-in-out infinite}
   @keyframes pillpulse{0%,100%{opacity:1}50%{opacity:.45}}
-  @media (max-width:760px){ .invite-pill{margin-bottom:14px} }
+  .invite-steps{width:100%;max-width:440px}
+  .invite-steps ol{text-align:left;margin:4px 0 14px;padding-left:22px;color:rgba(255,255,255,0.8);font-size:15px;line-height:1.55}
+  .invite-steps li{padding:2px 0}
+  .invite-steps .btn-ghost{min-height:48px}
+  #invite-open{min-height:48px;margin-bottom:10px}
+  @media (max-width:760px){ .invite-pill{margin-bottom:14px} .invite-steps{max-width:none} .invite-steps .btn{width:100%} #invite-open{width:100%} }
 </style>
 
 <script src="../app.js"></script>
 <script>
-/* ---- invite context: read ?ref=, personalize, and carry it into the waitlist submit ---- */
+/* ---- invite page: read ?ref= / ?r= / ?c=, personalise with textContent only, offer install + copy-link paths ----
+   DEFERRED DEEP LINK LIMITS (do not oversell): iOS gives a web page no way to pass a parameter through the App Store,
+   and we use no SDK, fingerprinting, IP matching or automatic clipboard read (all of those are tracking or review risk).
+   So the inviter / replay is NOT carried across the install automatically. The supported hop is manual:
+   "Copy my invite link" (user gesture, we only WRITE the clipboard) -> install -> open CoLift -> "Paste a link".
+   Also: Android friends are excluded, someone who installs on another phone loses the link, iMessage may not unfurl the preview.
+   Installed users: tapping the https link from Messages/Mail opens the app (universal link, AASA covers /i). From in-app
+   browsers (Instagram etc.) it does not; the Safari Smart App Banner (app-argument) and, for replay links only, the
+   com.colift.app://r?d= button cover that. The shipped app (build 14) registers ONE scheme, com.colift.app, and handles
+   only auth/callback, g/, join/, r?d= (replay) and https://colift.fit/i?ref= (not a custom-scheme ref), so there is no
+   scheme link for a plain friend invite and no button is shown for it. */
 (function () {
+  var REF_RE = /^[A-Za-z0-9-]{8,64}$/;           // what the app's ref handler accepts (an account id)
+  var HANDLE_RE = /^[A-Za-z][A-Za-z0-9_-]{1,19}$/; // readable name shown as "Ben"; never an id
+  var CH_RE = /^[a-z0-9_-]{1,24}$/;              // channel tag contract (shared with the app's analytics, string format only)
+  var B64U_RE = /^[A-Za-z0-9_-]+$/;
+  var MAX_R = 3000;
+
+  function cleanChannel(v) { v = String(v == null ? "" : v).trim().toLowerCase(); return CH_RE.test(v) ? v : ""; }
+  function short(v, n) { return typeof v === "string" ? v.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, n) : ""; }
+  function decodeReplay(r) {
+    if (typeof r !== "string" || !r || r.length > MAX_R || !B64U_RE.test(r)) return null;
+    try {
+      var b = r.replace(/-/g, "+").replace(/_/g, "/");
+      while (b.length % 4) b += "=";
+      var bin = atob(b), bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      var pl = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
+      if (!pl || typeof pl !== "object" || Array.isArray(pl)) return null;
+      var xs = (Array.isArray(pl.x) ? pl.x : []).filter(function (v) { return typeof v === "string"; })
+        .map(function (v) { return short(v, 40); }).filter(Boolean).slice(0, 8);
+      if (!short(pl.t, 60) && !xs.length) return null;   // an empty object is not a workout
+      return { w: short(pl.w, 40) || "A friend", t: short(pl.t, 60) || "a workout", x: xs };
+    } catch (e) { return null; }
+  }
+  function copyLink(ref, r, c) {
+    var q = [];
+    if (r) q.push("r=" + r); else if (ref) q.push("ref=" + ref);
+    if (c) q.push("c=" + c);
+    return "https://colift.fit/i" + (q.length ? "?" + q.join("&") : "");
+  }
+  window.CLInvite = { cleanChannel: cleanChannel, decodeReplay: decodeReplay, copyLink: copyLink };
+
   try {
     var params = new URLSearchParams(window.location.search);
-    var ref = (params.get("ref") || "").trim();
-    if (ref) {
-      try { localStorage.setItem("cl_ref", ref); } catch (e) {}
-    } else {
-      try { ref = localStorage.getItem("cl_ref") || ""; } catch (e) {}
-    }
-    var field = document.getElementById("ref-field");
-    if (field) field.value = ref;
-    /* If the ref looks like a readable name/handle (not a long UUID), show it. */
-    var who = document.getElementById("invite-who");
-    if (who && ref && ref.length <= 20 && !/[0-9a-f]{8}-[0-9a-f]{4}/i.test(ref)) {
-      var nm = ref.charAt(0).toUpperCase() + ref.slice(1);
-      who.textContent = nm;
+    var $ = function (id) { return document.getElementById(id); };
+    var store = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+    var load = function (k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } };
+
+    var ref = (params.get("ref") || "").trim().slice(0, 64);
+    if (ref) store("cl_ref", ref); else ref = load("cl_ref").slice(0, 64);
+    var field = $("ref-field"); if (field) field.value = ref;
+
+    /* channel / campaign tag: ?c= (or utm_campaign / utm_source); stored, echoed into the copy link and the store link's ct */
+    var ch = cleanChannel(params.get("c") || params.get("utm_campaign") || params.get("utm_source"));
+    if (ch) store("cl_c", ch); else ch = cleanChannel(load("cl_c"));
+    window.CL_CT = ch || "invite";
+
+    var who = $("invite-who");
+    if (who && HANDLE_RE.test(ref)) who.textContent = ref.charAt(0).toUpperCase() + ref.slice(1);
+
+    var rRaw = (params.get("r") || "").trim();
+    var pl = rRaw ? decodeReplay(rRaw) : null;
+    var rOk = pl ? rRaw : "";
+    var refOk = REF_RE.test(ref) ? ref : "";
+
+    if (pl) {
+      var wCap = pl.w.charAt(0).toUpperCase() + pl.w.slice(1);
+      var pill = $("invite-pill");
+      if (pill) {
+        while (pill.firstChild) pill.removeChild(pill.firstChild);
+        var dot = document.createElement("span"); dot.className = "dot"; pill.appendChild(dot);
+        var b = document.createElement("b"); b.textContent = wCap; pill.appendChild(document.createTextNode(" ")); pill.appendChild(b);
+        pill.appendChild(document.createTextNode(" sent you " + pl.t + " · run it back together"));
+      }
+      var h1 = document.querySelector(".hero-copy h1");
+      if (h1) {
+        h1.textContent = wCap + "’s ";
+        var g = document.createElement("span"); g.className = "grad-text"; g.textContent = pl.t; h1.appendChild(g);
+        h1.appendChild(document.createTextNode(" is waiting."));
+      }
+      var sub = document.querySelector(".hero-copy .sub");
+      if (sub && pl.x.length) {
+        while (sub.firstChild) sub.removeChild(sub.firstChild);
+        var st = document.createElement("strong");
+        st.textContent = pl.x.slice(0, 4).join(" · ") + (pl.x.length > 4 ? " · +" + (pl.x.length - 4) + " more" : "");
+        sub.appendChild(st); sub.appendChild(document.createElement("br"));
+        sub.appendChild(document.createTextNode("Do the same workout on your own time, and it becomes one shared post with " + wCap + "."));
+      }
+      var s3 = $("step-3"); if (s3) s3.textContent = "Run the same workout.";
+      /* installed users: the one scheme link the shipped app really handles */
+      var cta = $("hero-cta");
+      if (cta) {
+        var open = document.createElement("a");
+        open.className = "btn btn-ghost"; open.id = "invite-open";
+        open.href = "com.colift.app://r?d=" + rOk;
+        open.textContent = "Already have CoLift? Open it";
+        cta.insertBefore(open, cta.firstChild);
+      }
     }
 
-    /* ---- replay deep link: ?r=<b64url {w,t,h,x}> -> this page IS that workout's landing ---- */
-    var r = (params.get("r") || "").trim();
-    if (r) {
+    /* install steps + copy button only when there is something to paste */
+    var link = copyLink(refOk, rOk, ch);
+    var canCopy = !!(refOk || rOk);
+    var steps = $("invite-steps");
+    if (steps && canCopy) steps.classList.remove("hidden");
+    var meta = document.querySelector('meta[name="apple-itunes-app"]');
+    if (meta && canCopy) meta.setAttribute("content", "app-id=6772358115, app-argument=" + link);
+
+    var btn = $("copy-invite"), status = $("copy-status");
+    if (btn) btn.addEventListener("click", function () {
+      var done = function (ok) { if (status) status.textContent = ok ? "Copied. Open CoLift and tap Paste a link." : "Could not copy. Long-press the address bar to copy this page’s link."; };
       try {
-        var pl = JSON.parse(decodeURIComponent(escape(atob(r.replace(/-/g, "+").replace(/_/g, "/")))));
-        /* the payload is attacker-controlled: coerce to short plain strings and escape before any innerHTML */
-        var esc = function (v) { return String(v == null ? "" : v).slice(0, 60).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
-        var w = esc(pl.w || "A friend"), t = esc(pl.t || "a workout");
-        var xs = (Array.isArray(pl.x) ? pl.x : []).slice(0, 8).map(esc);
-        var wCap = w.charAt(0).toUpperCase() + w.slice(1);
-        /* pill: "{w} sent you {t} · run it back" */
-        var pill = document.getElementById("invite-pill");
-        if (pill) pill.innerHTML = '<span class="dot"></span> <b>' + wCap + "</b>&nbsp;sent you " + t + " · run it back together";
-        /* headline: the workout is the invite */
-        var h1 = document.querySelector(".hero-copy h1");
-        if (h1) h1.innerHTML = wCap + "’s <span class=\"grad-text\">" + t + "</span> is waiting.";
-        var sub = document.querySelector(".hero-copy .sub");
-        if (sub && xs.length) sub.innerHTML = "<strong>" + xs.slice(0, 4).join(" · ") + (xs.length > 4 ? " · +" + (xs.length - 4) + " more" : "") + "</strong><br>Do the same workout on your own time, and it becomes one shared post with " + wCap + ".";
-        /* if the app is installed, hand straight off to it */
-        var cta = document.getElementById("hero-cta");
-        if (cta) {
-          var open = document.createElement("a");
-          open.className = "btn";
-          open.style.cssText = "display:inline-flex;margin-bottom:10px";
-          open.href = "com.colift.app://r?d=" + r;
-          open.textContent = "Open in CoLift";
-          cta.insertBefore(open, cta.firstChild);
-        }
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(fallback()); }); return; }
       } catch (e) {}
-    }
+      done(fallback());
+      function fallback() {
+        try {
+          var ta = document.createElement("textarea"); ta.value = link; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+          document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, link.length);
+          var ok = document.execCommand("copy"); document.body.removeChild(ta); return ok;
+        } catch (e) { return false; }
+      }
+    });
+    if (window.refreshStoreLink) window.refreshStoreLink();
   } catch (e) {}
 })();
 </script>
