@@ -1,2 +1,2 @@
 # Rewrite group codes to a page outside /g/ so HTML canonicalization cannot loop.
-/g/*  /group-invite.html  200
+/g/*  /group-invite  200
