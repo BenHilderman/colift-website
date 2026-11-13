@@ -9,6 +9,21 @@ const APP_STORE_URL  = "https://apps.apple.com/app/id6772358115";
 const INSTAGRAM_URL  = "https://instagram.com/colift.app";
 const TIKTOK_URL     = "https://tiktok.com/@colift.app";
 
+/* Keep failed sign-in returns branded, and remove authentication parameters before analytics. */
+(function(){
+  const url=new URL(window.location.href),fragment=new URLSearchParams(url.hash.slice(1));
+  const authKeys=['error','error_code','error_description','code','access_token','refresh_token'];
+  if(!authKeys.some(key=>url.searchParams.has(key)||fragment.has(key)))return;
+  for(const key of [...authKeys,'state']){url.searchParams.delete(key);fragment.delete(key);}
+  url.hash=fragment.toString();
+  window.history.replaceState(null,'',url.pathname+url.search+url.hash);
+  const banner=document.createElement('aside');banner.setAttribute('role','alert');
+  banner.style.cssText='position:fixed;z-index:100;top:86px;left:16px;right:16px;max-width:640px;margin:auto;padding:18px;border-radius:18px;background:#18121f;border:1px solid #a100ff;color:#fff;box-shadow:0 12px 40px #0008;display:flex;gap:16px;align-items:center';
+  const text=document.createElement('p');text.style.margin='0';text.textContent='Sign-in wasn’t completed. Return to CoLift and try again. Your saved workouts are still there.';
+  const dismiss=document.createElement('button');dismiss.type='button';dismiss.className='btn btn-sm';dismiss.textContent='Dismiss';dismiss.addEventListener('click',()=>banner.remove());
+  banner.append(text,dismiss);document.body.prepend(banner);
+})();
+
 /* ---- wire social links ---- */
 const ig = document.getElementById("ig-link"); if (ig) ig.href = INSTAGRAM_URL;
 const tt = document.getElementById("tt-link"); if (tt) tt.href = TIKTOK_URL;
