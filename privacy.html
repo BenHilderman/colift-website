@@ -38,6 +38,7 @@
   <h2>Location</h2>
   <p>Location is optional and CoLift works without it. You can pick a city by name instead, which needs no permission.</p>
   <ul>
+    <li>If you tap <strong>Use location</strong> for your Feed or profile, CoLift requests permission while you use the app and uses an approximate position to find a nearby city on your phone. Only the city name and update time are remembered for this preference. If you leave automatic location enabled, the city may refresh while the app is open or returns to the foreground, at most once every 15 minutes and only with existing permission. You can turn this off in CoLift or enter a city or town manually; manual entry turns automatic updates off. No position history is kept.</li>
     <li>If you tap <strong>Use my location</strong> in Groups, CoLift asks iOS for permission while you use the app, reads one approximate position, and on your phone rounds it to a grid of 0.05 degrees (roughly 5 km). The rounded cell is kept on your phone and is never sent as a precise position. It is sent only as the centre of a search for groups and events near you; our server rounds it again and does not store it.</li>
     <li>We do not read your location in the background, do not watch it continuously, do not keep a location history, and do not show your location to other people. Distances to groups are shown in ranges, such as "Under 5 km", never exact figures.</li>
     <li>The last city or rounded area you chose can be remembered on your phone so the screen opens where you left it. You can turn location off at any time in iOS Settings.</li>
@@ -52,7 +53,7 @@
   <ul>
     <li><strong>Camera and microphone</strong>: only to capture a workout photo or video when you tap capture. Optional.</li>
     <li><strong>Photos</strong>: to save your workout recap card to your library, and to let you choose a picture for your profile or a moment. Optional.</li>
-    <li><strong>Location (while using the app)</strong>: only when you tap Use my location, as described above. Optional.</li>
+    <li><strong>Location (while using the app)</strong>: when you choose Use location, including optional foreground city updates while enabled, or a nearby Groups search, as described above. Optional. No background location access.</li>
     <li><strong>Health (Apple Watch)</strong>: only if you use the CoLift Apple Watch app, as described below. Optional.</li>
     <li><strong>Notifications</strong>: only if you enable training reminders in Settings. Your chosen days, local time and training type stay on this iPhone. CoLift schedules at most one quiet local reminder on a chosen day for the next four weeks and refreshes that schedule when you open the app. Reminder wording rotates; skipped sessions do not trigger extra notifications. You can disable reminders in CoLift or iPhone Settings. No location, network identifiers or friend activity are used to choose reminder times.</li>
   </ul>
