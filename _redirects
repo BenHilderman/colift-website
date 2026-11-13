@@ -1,3 +1,2 @@
-# Group invite links (https://colift.fit/g/CODE): serve the static invite page at the same URL (the page reads the code from the path).
-# Without this rule, /g/CODE is an empty 404 on Cloudflare. Pages and Workers static assets both read this file.
-/g/*  /g/index.html  200
+# Rewrite group codes to a page outside /g/ so HTML canonicalization cannot loop.
+/g/*  /group-invite.html  200

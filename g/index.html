@@ -61,8 +61,8 @@
 <script>
 (function () {
   /* Mirrors app.js. TODO(founder): set APP_STORE_LIVE true and the real App Store URL at launch. */
-  var APP_STORE_LIVE = false;
-  var APP_STORE_URL = "https://apps.apple.com/app/idXXXXXXXXX";
+  var APP_STORE_LIVE = true;
+  var APP_STORE_URL = "https://apps.apple.com/app/id6772358115";
   var m = /^\/g\/([A-Za-z0-9]{6,16})\/?$/.exec(location.pathname);
   var code = m ? m[1] : (new URLSearchParams(location.search).get("c") || "");
   code = /^[A-Za-z0-9]{6,16}$/.test(code) ? code.toUpperCase() : "";
