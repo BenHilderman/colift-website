@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>A friend invited you to CoLift</title>
-<meta name="description" content="Leave your lifting partner the workout you just did, with a photo, and run theirs when you can't train at the same time.">
+<meta name="description" content="A workout worth trying, on your own time. Get CoLift, follow a workout and share your perspective.">
 <meta name="robots" content="noindex">
 <meta name="apple-itunes-app" content="app-id=6772358115, app-argument=https://colift.fit/i">
 <link rel="icon" href="../assets/icon.png">
@@ -13,12 +13,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Your friend invited you to CoLift">
 <meta property="og:description" content="Lift together: same workout, different schedules. Tap to join.">
-<meta property="og:image" content="../assets/og.png">
+<meta property="og:image" content="https://colift.fit/assets/og-workout-loop-20261114.png">
 <meta property="og:url" content="https://colift.fit/i">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Your friend invited you to CoLift">
 <meta name="twitter:description" content="Lift together: same workout, different schedules. Tap to join.">
-<meta name="twitter:image" content="../assets/og.png">
+<meta name="twitter:image" content="https://colift.fit/assets/og-workout-loop-20261114.png">
 <link rel="stylesheet" href="../styles.css?v=10">
 </head>
 <body>
@@ -43,19 +43,19 @@
       <div class="invite-pill" id="invite-pill">
         <span class="dot"></span> <b id="invite-who">A friend</b>&nbsp;invited you to lift together
       </div>
-      <h1>Be their <span class="grad-text">lifting partner.</span></h1>
-      <p class="sub">Leave your lifting partner the workout you just did, with a photo, and run theirs when you can't train at the same time.</p>
+      <h1>Their workout.<br><span class="grad-text">Your turn.</span></h1>
+      <p class="sub">A workout worth trying, on your own time. Get CoLift, follow a workout and share your perspective.</p>
       <div class="cta-row" id="hero-cta">
-        <form class="waitlist" id="waitlist">
+        <form class="waitlist hidden" id="waitlist">
           <input type="hidden" name="ref" id="ref-field" value="">
           <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address">
           <button class="btn" type="submit">Save my spot</button>
         </form>
-        <p class="micro" id="waitlist-note">CoLift is not in the App Store yet. Leave your email and we will write when it opens.</p>
-        <div class="store-badges hidden" id="store-badges">
+        <p class="micro hidden" id="waitlist-note">CoLift is available on the App Store for iPhone.</p>
+        <div class="store-badges" id="store-badges">
           <a class="btn" id="appstore-link" href="https://apps.apple.com/app/id6772358115">Download on the App&nbsp;Store</a>
         </div>
-        <p class="micro hidden" id="store-note">Free to start. iPhone only for now.</p>
+        <p class="micro" id="store-note">Free core workouts · iPhone. Preview screens show an upcoming update and sample content.</p>
         <div class="invite-steps hidden" id="invite-steps">
           <ol>
             <li>Get CoLift on your iPhone.</li>
@@ -69,8 +69,8 @@
     </div>
 
     <div class="phones hero-shot" aria-label="COLIFT app screens">
-      <div class="ph"><img src="../assets/screens/w-replay_lobby.webp" alt="COLIFT replay lobby: Replay with Riley and 3 more" width="640" height="1387" fetchpriority="high"></div>
-      <div class="ph"><img src="../assets/screens/w-replay_session.webp" alt="COLIFT workout: Riley's photo at the back squat" width="640" height="1387" fetchpriority="high"></div>
+      <div class="ph"><img src="../assets/screens/2026-11-preview/welcome.webp" alt="Upcoming CoLift update: Their workout. Your turn." width="640" height="1387" fetchpriority="high"></div>
+      <div class="ph"><img src="../assets/screens/2026-11-preview/train.webp" alt="Upcoming CoLift update: sample creator capture during a workout" width="640" height="1387" fetchpriority="high"></div>
     </div>
   </div>
 </header>
@@ -78,7 +78,7 @@
 <!-- WHY (mini) -->
 <section style="padding:8px 0 72px">
   <div class="wrap" style="max-width:620px;text-align:center">
-    <p class="sub" style="margin:0 auto;max-width:52ch;color:var(--muted)">No leaderboards. No fake friends. Just you and the people who keep you showing up: <span class="grad-text" style="font-weight:800">presence over performance.</span></p>
+    <p class="sub" style="margin:0 auto;max-width:52ch;color:var(--muted)">Your own pace. Your own perspective. Find a workout, follow the plan and decide what you want to share. <span class="grad-text" style="font-weight:800">Their workout. Your turn.</span></p>
   </div>
 </section>
 
@@ -86,7 +86,7 @@
   <div class="wrap cols">
     <div>
       <a class="brand" href="/"><img class="logo" src="../assets/logo.png" alt="COLIFT" style="height:22px"></a>
-      <p class="copy">© 2026 CoLift. Never train alone.</p>
+      <p class="copy">© 2026 CoLift. Their workout. Your turn.</p>
     </div>
     <div>
       <div class="col-h">Legal</div>
@@ -109,6 +109,7 @@
 </footer>
 
 <style>
+  .hero h1{text-transform:none;overflow-wrap:anywhere}
   .invite-pill{display:inline-flex;align-items:center;gap:2px;margin-bottom:20px;padding:9px 15px;border-radius:999px;
     background:rgba(255,255,255,0.055);border:0.5px solid rgba(255,255,255,0.14);
     box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);font-size:13.5px;font-weight:600;color:var(--muted);letter-spacing:.01em}
@@ -124,7 +125,7 @@
   @media (max-width:760px){ .invite-pill{margin-bottom:14px} .invite-steps{max-width:none} .invite-steps .btn{width:100%} #invite-open{width:100%} }
 </style>
 
-<script src="../app.js"></script>
+<script src="../app.js?v=20261114-workout-loop"></script>
 <script>
 /* ---- invite page: read ?ref= / ?r= / ?c=, personalise with textContent only, offer install + copy-link paths ----
    DEFERRED DEEP LINK LIMITS (do not oversell): iOS gives a web page no way to pass a parameter through the App Store,
@@ -199,13 +200,13 @@
         while (pill.firstChild) pill.removeChild(pill.firstChild);
         var dot = document.createElement("span"); dot.className = "dot"; pill.appendChild(dot);
         var b = document.createElement("b"); b.textContent = wCap; pill.appendChild(document.createTextNode(" ")); pill.appendChild(b);
-        pill.appendChild(document.createTextNode(" sent you " + pl.t + " · run it back together"));
+        pill.appendChild(document.createTextNode(" sent you " + pl.t + " · your turn"));
       }
       var h1 = document.querySelector(".hero-copy h1");
       if (h1) {
         h1.textContent = wCap + "’s ";
         var g = document.createElement("span"); g.className = "grad-text"; g.textContent = pl.t; h1.appendChild(g);
-        h1.appendChild(document.createTextNode(" is waiting."));
+        h1.appendChild(document.createTextNode(" to try."));
       }
       var sub = document.querySelector(".hero-copy .sub");
       if (sub && pl.x.length) {
@@ -213,7 +214,7 @@
         var st = document.createElement("strong");
         st.textContent = pl.x.slice(0, 4).join(" · ") + (pl.x.length > 4 ? " · +" + (pl.x.length - 4) + " more" : "");
         sub.appendChild(st); sub.appendChild(document.createElement("br"));
-        sub.appendChild(document.createTextNode("Do the same workout on your own time, and it becomes one shared post with " + wCap + "."));
+        sub.appendChild(document.createTextNode("Try this exercise list on your own time. Check the plan in CoLift before training. Shared links may not include the creator’s media. Sent by " + wCap + "."));
       }
       var s3 = $("step-3"); if (s3) s3.textContent = "Run the same workout.";
       /* installed users: the one scheme link the shipped app really handles */

@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-11-14T06:17:52.922786+00:00",
+  "source": "Current CoLift iOS app UI",
+  "screens": "Train/welcome from production web bundle; feed/workout from labelled demo; album/reel from illustrative local fixture. No posts sent.",
+  "publicationDisclosure": "Upcoming update and sample content explicitly labelled on the site.",
+  "contentEdits": "None. Screens converted to WebP. Social image combines unchanged captures with brand text.",
+  "assets": [
+    {
+      "file": "assets/screens/2026-11-preview/album.webp",
+      "width": 786,
+      "height": 1704,
+      "sha256": "7d5ce640d16bd50d8f3a0ae6cf03c929c8745cbcb179682a2d05a8427849cbee"
+    },
+    {
+      "file": "assets/screens/2026-11-preview/feed.webp",
+      "width": 393,
+      "height": 852,
+      "sha256": "0de07b61ed16596ef777faa58b9c23279c1d1bc962c9e6c36ff092e469a758ca"
+    },
+    {
+      "file": "assets/screens/2026-11-preview/reel.webp",
+      "width": 786,
+      "height": 1704,
+      "sha256": "dccb7a46c06c6695a19e392f09983f41887d262aa062a3703bd7d7e59a10e6e0"
+    },
+    {
+      "file": "assets/screens/2026-11-preview/train.webp",
+      "width": 393,
+      "height": 852,
+      "sha256": "1e38fc9f9bc6a85f404d6b04fc0eacfc02102fdf7fe0a5fc5298e9277f0cd9ea"
+    },
+    {
+      "file": "assets/screens/2026-11-preview/welcome.webp",
+      "width": 393,
+      "height": 852,
+      "sha256": "99937e6667fb46bce6ddd638a7c83c2f6efda9b0c3e3782fa7323db8bc906ce8"
+    },
+    {
+      "file": "assets/screens/2026-11-preview/workout.webp",
+      "width": 393,
+      "height": 852,
+      "sha256": "763d1606e2f1e240012dfef8cd67d143f3064af678e619cc21a1c80757432e37"
+    }
+  ]
+}

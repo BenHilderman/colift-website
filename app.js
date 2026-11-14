@@ -152,3 +152,36 @@ if (wl) {
     }
   });
 }
+
+/* Current marketing pages use real links, including when JavaScript is unavailable. */
+function refreshMarketingStoreLinks() {
+  document.querySelectorAll('[data-store-link]').forEach(link => { link.href = storeUrl(); });
+}
+refreshMarketingStoreLinks();
+const previousRefreshStoreLink = window.refreshStoreLink;
+window.refreshStoreLink = function () { previousRefreshStoreLink(); refreshMarketingStoreLinks(); };
+
+/* Enlarge actual app captures without changing their contents. Native dialog owns focus trapping and Escape. */
+const preview = document.getElementById('screen-preview');
+if (preview && typeof preview.showModal === 'function') {
+  let previewTrigger = null;
+  document.querySelectorAll('[data-preview]').forEach(trigger => trigger.addEventListener('click', () => {
+    const source = new URL(trigger.dataset.preview, window.location.href);
+    if (source.origin !== window.location.origin || !source.pathname.includes('/assets/screens/')) return;
+    previewTrigger = trigger;
+    const image = document.getElementById('screen-preview-image');
+    image.src = source.href;
+    image.alt = trigger.querySelector('img')?.alt || 'CoLift app preview';
+    document.getElementById('screen-preview-caption').textContent = trigger.dataset.caption || 'Upcoming CoLift update';
+    preview.showModal();
+    document.body.classList.add('m-preview-open');
+    preview.querySelector('button').focus();
+  }));
+  preview.querySelector('.m-preview-close').addEventListener('click', () => preview.close());
+  preview.addEventListener('click', event => { if (event.target === preview) preview.close(); });
+  preview.addEventListener('close', () => {
+    document.body.classList.remove('m-preview-open');
+    document.getElementById('screen-preview-image').removeAttribute('src');
+    previewTrigger?.focus();
+  });
+}
