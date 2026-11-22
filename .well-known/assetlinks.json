@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.colift.app",
+      "sha256_cert_fingerprints": [
+        "06:A5:B8:84:0C:3C:5B:70:E1:7E:0E:64:FD:50:0F:65:9C:12:2D:BB:EE:1B:B6:44:25:63:08:B9:60:3A:02:33"
+      ]
+    }
+  }
+]
