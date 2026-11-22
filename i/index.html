@@ -45,6 +45,7 @@
       </div>
       <h1>Their workout.<br><span class="grad-text">Your turn.</span></h1>
       <p class="sub">A workout worth trying, on your own time. Get CoLift, follow a workout and share your perspective.</p>
+      <section id="shared-plan-preview" class="shared-plan-preview" aria-label="Shared workout instructions" hidden></section>
       <div class="cta-row" id="hero-cta">
         <form class="waitlist hidden" id="waitlist">
           <input type="hidden" name="ref" id="ref-field" value="">
@@ -59,7 +60,7 @@
         <div class="invite-steps hidden" id="invite-steps">
           <ol>
             <li>Get CoLift on your iPhone.</li>
-            <li id="step-2">Open it, tap Paste a link, and paste your invite.</li>
+            <li id="step-2">After installing, open this invite link again.</li>
             <li id="step-3">Say yes to adding your friend.</li>
           </ol>
           <button class="btn btn-ghost" type="button" id="copy-invite">Copy my invite link</button>
@@ -110,12 +111,29 @@
 
 <style>
   .hero h1{text-transform:none;overflow-wrap:anywhere}
-  .invite-pill{display:inline-flex;align-items:center;gap:2px;margin-bottom:20px;padding:9px 15px;border-radius:999px;
+  .hero-copy{min-width:0}
+  .invite-pill{max-width:100%;overflow-wrap:anywhere}
+  .shared-plan-preview{margin:24px 0;padding:22px;border:1px solid #58416b;border-radius:24px;background:linear-gradient(145deg,#24182f,#141119);text-align:left;max-width:560px;overflow-wrap:anywhere}
+  .shared-plan-preview[hidden]{display:none}
+  .shared-plan-preview h2{font-size:27px;line-height:1.15;margin:8px 0 12px;letter-spacing:-.02em}
+  .preview-eyebrow{color:#dbacff;font-size:11px;letter-spacing:.12em;font-weight:800;margin:0}
+  .preview-more{margin:12px 0 18px}.preview-more summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:#e4baff;text-decoration:underline;text-underline-offset:3px}
+  .preview-note{font-size:13px;line-height:1.55;color:#d0c4db;margin:0}
+  .preview-exercises{list-style:none;counter-reset:exercise;padding:0;margin:18px 0}
+  .preview-exercises li{counter-increment:exercise;display:grid;grid-template-columns:30px 1fr;gap:4px 10px;padding:13px 0;border-top:1px solid #49354f}
+  .preview-exercises li:before{content:counter(exercise,decimal-leading-zero);grid-row:1/4;color:#dba7ff;font-weight:800;font-size:12px;padding-top:2px}
+  .preview-exercises strong{font-size:17px;line-height:1.3}
+  .preview-exercises span,.preview-exercises a{grid-column:2;font-size:13px;line-height:1.5;color:#ded2e8}
+  .preview-exercises a{color:#e4baff;min-height:44px;display:flex;align-items:center;text-decoration:underline;text-underline-offset:3px}
+  @media(prefers-reduced-motion:reduce){.invite-pill .dot{animation:none}}
+  @media(max-width:400px){.shared-plan-preview{padding:18px}.shared-plan-preview h2{font-size:24px}}
+
+  .invite-pill{display:block;width:fit-content;margin-bottom:20px;padding:9px 15px;border-radius:999px;
     background:rgba(255,255,255,0.055);border:0.5px solid rgba(255,255,255,0.14);
     box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);font-size:13.5px;font-weight:600;color:var(--muted);letter-spacing:.01em}
   .invite-pill b{color:#fff;font-weight:800}
-  .invite-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--grad);margin-right:7px;
-    box-shadow:0 0 10px rgba(204,0,255,0.7);animation:pillpulse 2.2s ease-in-out infinite}
+  .invite-pill .dot{display:inline-block;vertical-align:middle;width:8px;height:8px;border-radius:50%;background:var(--grad);margin-right:7px;
+    box-shadow:0 0 10px rgba(204,0,255,0.7);animation:pillpulse 2.2s ease-in-out infinite;flex-shrink:0}
   @keyframes pillpulse{0%,100%{opacity:1}50%{opacity:.45}}
   .invite-steps{width:100%;max-width:440px}
   .invite-steps ol{text-align:left;margin:4px 0 14px;padding-left:22px;color:rgba(255,255,255,0.8);font-size:15px;line-height:1.55}
@@ -126,42 +144,20 @@
 </style>
 
 <script src="../app.js?v=20261114-workout-loop"></script>
+<script src="replay-preview.js?v=20261122"></script>
 <script>
-/* ---- invite page: read ?ref= / ?r= / ?c=, personalise with textContent only, offer install + copy-link paths ----
-   DEFERRED DEEP LINK LIMITS (do not oversell): iOS gives a web page no way to pass a parameter through the App Store,
-   and we use no SDK, fingerprinting, IP matching or automatic clipboard read (all of those are tracking or review risk).
-   So the inviter / replay is NOT carried across the install automatically. The supported hop is manual:
-   "Copy my invite link" (user gesture, we only WRITE the clipboard) -> install -> open CoLift -> "Paste a link".
-   Also: Android friends are excluded, someone who installs on another phone loses the link, iMessage may not unfurl the preview.
-   Installed users: tapping the https link from Messages/Mail opens the app (universal link, AASA covers /i). From in-app
-   browsers (Instagram etc.) it does not; the Safari Smart App Banner (app-argument) and, for replay links only, the
-   com.colift.app://r?d= button cover that. The shipped app (build 14) registers ONE scheme, com.colift.app, and handles
-   only auth/callback, g/, join/, r?d= (replay) and https://colift.fit/i?ref= (not a custom-scheme ref), so there is no
-   scheme link for a plain friend invite and no button is shown for it. */
+/* Shared instruction links are user-supplied, not authenticated creator identities.
+   There is no automatic deferred-install attribution or clipboard read. After
+   installation the recipient returns to the original link; the replay button
+   uses the existing com.colift.app://r?d= handler. Photos/results are not loaded.
+   Existing universal-link and App Store paths remain unchanged. */
 (function () {
   var REF_RE = /^[A-Za-z0-9-]{8,64}$/;           // what the app's ref handler accepts (an account id)
   var HANDLE_RE = /^[A-Za-z][A-Za-z0-9_-]{1,19}$/; // readable name shown as "Ben"; never an id
   var CH_RE = /^[a-z0-9_-]{1,24}$/;              // channel tag contract (shared with the app's analytics, string format only)
-  var B64U_RE = /^[A-Za-z0-9_-]+$/;
-  var MAX_R = 3000;
 
   function cleanChannel(v) { v = String(v == null ? "" : v).trim().toLowerCase(); return CH_RE.test(v) ? v : ""; }
-  function short(v, n) { return typeof v === "string" ? v.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, n) : ""; }
-  function decodeReplay(r) {
-    if (typeof r !== "string" || !r || r.length > MAX_R || !B64U_RE.test(r)) return null;
-    try {
-      var b = r.replace(/-/g, "+").replace(/_/g, "/");
-      while (b.length % 4) b += "=";
-      var bin = atob(b), bytes = new Uint8Array(bin.length);
-      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-      var pl = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
-      if (!pl || typeof pl !== "object" || Array.isArray(pl)) return null;
-      var xs = (Array.isArray(pl.x) ? pl.x : []).filter(function (v) { return typeof v === "string"; })
-        .map(function (v) { return short(v, 40); }).filter(Boolean).slice(0, 8);
-      if (!short(pl.t, 60) && !xs.length) return null;   // an empty object is not a workout
-      return { w: short(pl.w, 40) || "A friend", t: short(pl.t, 60) || "a workout", x: xs };
-    } catch (e) { return null; }
-  }
+  function decodeReplay(r) { return window.CLReplayPreview ? window.CLReplayPreview.decode(r) : null; }
   function copyLink(ref, r, c) {
     var q = [];
     if (r) q.push("r=" + r); else if (ref) q.push("ref=" + ref);
@@ -194,6 +190,7 @@
     var refOk = REF_RE.test(ref) ? ref : "";
 
     if (pl) {
+      window.CLReplayPreview.render($("shared-plan-preview"), pl);
       var wCap = pl.w.charAt(0).toUpperCase() + pl.w.slice(1);
       var pill = $("invite-pill");
       if (pill) {
@@ -214,16 +211,16 @@
         var st = document.createElement("strong");
         st.textContent = pl.x.slice(0, 4).join(" · ") + (pl.x.length > 4 ? " · +" + (pl.x.length - 4) + " more" : "");
         sub.appendChild(st); sub.appendChild(document.createElement("br"));
-        sub.appendChild(document.createTextNode("Try this exercise list on your own time. Check the plan in CoLift before training. Shared links may not include the creator’s media. Sent by " + wCap + "."));
+        sub.appendChild(document.createTextNode(pl.plan.length ? "Pick up this shared plan on your own schedule. Your own weights, your own pace." : "Exercise names shared by " + wCap + ". Review the full plan in COLIFT before training."));
       }
-      var s3 = $("step-3"); if (s3) s3.textContent = "Run the same workout.";
+      var s3 = $("step-3"); if (s3) s3.textContent = "Review the plan and start when you’re ready.";
       /* installed users: the one scheme link the shipped app really handles */
       var cta = $("hero-cta");
       if (cta) {
         var open = document.createElement("a");
         open.className = "btn btn-ghost"; open.id = "invite-open";
         open.href = "com.colift.app://r?d=" + rOk;
-        open.textContent = "Already have CoLift? Open it";
+        open.textContent = "Open this workout in COLIFT";
         cta.insertBefore(open, cta.firstChild);
       }
     }
@@ -238,7 +235,7 @@
 
     var btn = $("copy-invite"), status = $("copy-status");
     if (btn) btn.addEventListener("click", function () {
-      var done = function (ok) { if (status) status.textContent = ok ? "Copied. Open CoLift and tap Paste a link." : "Could not copy. Long-press the address bar to copy this page’s link."; };
+      var done = function (ok) { if (status) status.textContent = ok ? "Copied. After installing COLIFT, open this link again." : "Could not copy. Long-press the address bar to copy this page’s link."; };
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(fallback()); }); return; }
       } catch (e) {}
