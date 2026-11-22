@@ -1,42 +1,25 @@
-# CoLift — Brand & Design Tokens (for the website)
+# COLIFT identity
 
-These are pulled directly from the live app so the site matches it 1:1.
+Use the original linked-people mark and uppercase COLIFT wordmark. The canonical transparent lockup is `assets/colift-wordmark.png`, copied without recoloring from the app's `public/colift-wordmark.png`. Keep the original gradient intact. Do not use a logo with a baked-in rectangle.
 
-## Logo / wordmark
-- `assets/logo.png` — the icon + **COLIFT** wordmark lockup (gradient, transparent bg). Use in the top-left nav and the footer.
-- `assets/icon.png` — 1024px app icon. Use for favicon, `apple-touch-icon`, and the OG/Twitter share image base.
-- Wordmark is always uppercase **COLIFT**. Never recolor it solid; it carries the brand gradient.
+The shared brand promise is **Your workouts. Your people.** Explain the task with **Find a workout. Train at your pace. Share your version.** The replay message **Their workout. Your turn.** supports that promise.
 
-## Color
-Dark theme only (the app is dark-mode only — the site should be too).
-- Background base: `#0E0E14` → `#08080B` (vertical gradient). Page bg:
-  `radial-gradient(125% 85% at 50% -12%, rgba(119,0,255,0.12), rgba(119,0,255,0) 55%), linear-gradient(180deg,#0E0E14,#08080B)`
-- Text: white `#FFFFFF`; dim `rgba(255,255,255,0.68)`; faint `rgba(255,255,255,0.48)`.
-- Card surface: `rgba(255,255,255,0.065)` with border `0.5px solid rgba(255,255,255,0.20)`.
+## Visual system
 
-## Brand gradient (the signature)
-- Primary CTA / accents: `linear-gradient(135deg, #FF00DD, #CC00FF 52%, #7700FF)`
-- Gradient text (headlines accent): `linear-gradient(180deg, #BB00FF, #FF00DD)` via `background-clip:text`.
-- Logo gradient: `linear-gradient(180deg, #7700FF, #CC00FF, #FF00DD)`
-- Accent hexes: magenta `#FF00DD`, mid `#CC00FF`, purple `#7700FF`.
-- Button glow (under primary CTAs): `0 6px 22px rgba(204,0,255,0.45)`.
+- Ink canvas `#0b0810`; raised canvas `#15101d`.
+- Original mark: violet `#7700ff`, magenta `#cc00ff`, pink `#ff00dd`.
+- Readable text: `#fbf7ff`; supporting text `#c6becf`; readable accent `#dca5ff`.
+- Actions: `linear-gradient(115deg,#bd16b9,#8b2be2 75%,#7527d1)` with white labels.
+- Barlow Condensed 800–900 for expressive headlines. Barlow 400–700 for explanations, inputs, controls and practical page titles.
+- Use the original mark at low opacity as a background motif. Keep it decorative and outside the reading path.
+- Rounded controls, restrained borders and sufficient space around the primary task. Do not add glow to every surface.
 
-## Type
-- Body / UI: **Barlow** (weights 400,500,600,700,800).
-- Display / numbers / hero: **Barlow Condensed** (weights 700,800,900) — used for big headlines & stat numbers.
-- Google Fonts: `https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@700;800;900&display=swap`
-- Headlines: Barlow Condensed 800–900, tight letter-spacing (-0.5px), large.
+## Content
 
-## App screenshots (phone mockups) — `assets/screens/`
-All 1206×2622 (@3x, iPhone 16 Pro frame-less). Drop into a phone frame or use bare with rounded corners + soft shadow.
-- `home.png` — THE hero. Shows live presence ("Tyler's lifting now · Join"), friends rail, and a shared workout post. Lead with this.
-- `dashboard.png` — CoLift+ analytics (streak, consistency, 8-week heatmap, PRs).
-- `weight.png` — weight trend graph with goal line.
-- `goals.png` — goal customization.
-- `food.png` — food / macro logging.
+Use actual app captures. Keep sample/preview disclosures visible. Personal photos do not imply an exercise demonstration. Do not invent members, testimonials, user numbers or completed activity. The app supports dark and light appearance; the marketing site uses the ink palette.
 
-## Voice
-Warm, plain, non-coercive. Presence over performance. Never shamey, never hustle-culture. Short sentences. Lowercase-friendly but headlines can be bold. Examples in the app: "Better with a friend on it", "don't break the chain", "trust the trend".
+Keep current availability statements specific to the distributed version. The website is not evidence that an app update has shipped. Preserve privacy, support, account deletion, guest previews, app links and founder links.
 
-## Vibe target
-Minimal like the BeReal site: near-black, one strong gradient accent, huge type, lots of negative space, one or two phone mockups, a single clear CTA. No stock photos, no clutter, no carousels.
+## Social assets
+
+The November 22 brand refresh supplies original-logo avatars, platform banners, four Story highlight covers, three portrait brand layouts and a 1200×630 link preview. Source and exports are retained in `outputs/colift-brand-refresh-20261122/` in the project workspace. Artwork is not proof of publication or customer activity.
